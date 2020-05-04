@@ -31,7 +31,9 @@ CREATE TABLE questions(
 CREATE TABLE answers(
                        id SERIAL PRIMARY KEY,
                        question_id INTEGER,
+                       user_id INTEGER,
                        FOREIGN KEY (question_id) REFERENCES questions (id),
+                       FOREIGN KEY (user_id) REFERENCES users (user_id),
                        answer_context TEXT NOT NULL,
                        post_time TIMESTAMP DEFAULT NOW()
 );

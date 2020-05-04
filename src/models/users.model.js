@@ -37,8 +37,6 @@ exports.getDoctors = () => {
 }
 
 
-
-
 //getNonDoctors
 
 
