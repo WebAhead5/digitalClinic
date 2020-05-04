@@ -6,6 +6,7 @@ const hbsHelpers = require("../views/viewHelpers");
 const router = require('./router');
 
 
+
 //setup environment variables
 if(process.env.NODE_ENV !== "production")
     require('dotenv').config();
