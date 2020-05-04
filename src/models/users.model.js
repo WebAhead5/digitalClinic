@@ -66,11 +66,12 @@ exports.getUserByEmail = (email) => {
     return async () => {
         try {
             let res = await dbConnection.query('SELECT * FROM users WHERE email = $1', [email]);
+            return res.rows.length?res.rows[0]:undefined;
+       
         }
         catch (e) {
             throw new Error("An error occured while retrieving users from the db")
         }
-        return res.rows;
     }
 
 }

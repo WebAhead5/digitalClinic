@@ -1,8 +1,16 @@
 <h1>Register</h1>
-<form method='post' action='login'>
-    <input type='name' name='name' placeholder='Name' required />
+<form method='post' action='/register'>
+    <input type='name' name='firstName' placeholder='First Name' required />
+    <input type='name' name='lastName' placeholder='Last Name' required />
     <input type='email' name='email' placeholder='Email' required />
-    <input type='password' name='password' placeholder='Password' required />
-    <input type='submit' />
+    <input type='newpassword' name='newPassword' placeholder='Password' required />
+    <input type='confirmpassword' name='confirmPassword' placeholder='Confirm Password' required />
+    <input id="submit" type="submit" value="Submit">
 </form>
+
+{{#if error}}
+<h1 class="regErr">{{error}}</h1>
+{{/if}}
+
+
 <a href='/login'>Login</a>

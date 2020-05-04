@@ -45,4 +45,13 @@ function validatePassword(str) {
   return { isValid, errorMessage, strength, total: 5 };
 }
 
-module.exports = { isEmptyString, isLettersAndSpaces, validatePassword };
+
+
+function passwordsMatch(password, confirmPassword) {
+  if (password !== confirmPassword){
+    return false;
+  } true
+}
+
+
+module.exports = { isEmptyString, isLettersAndSpaces, validatePassword, passwordsMatch };
