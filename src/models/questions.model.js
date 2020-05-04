@@ -1,4 +1,5 @@
 const dbConnection = require('../database/db_connection');
+const validator = require("./validator");
 
 function getAll() {
   return async () => {
