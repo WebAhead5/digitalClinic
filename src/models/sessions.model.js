@@ -1,8 +1,6 @@
 const dbConnection = require('../database/db_connection');
 
-
 //getall
-
 exports.getAll = async () => {
 
 
@@ -18,12 +16,7 @@ exports.getAll = async () => {
 }
 
 
-
-
-
 //getBySessionId
-
-
 exports.getBySessionId = async (sessionId) => {
 
 
@@ -38,12 +31,6 @@ exports.getBySessionId = async (sessionId) => {
     }
 }
 
-
-
-
-
-
-//add(userID,duration)
 
 
 exports.add = async (userId, duration) => {
@@ -63,12 +50,7 @@ exports.add = async (userId, duration) => {
 
 
 
-
-
-
 //delete(SessionID)
-
-
 exports.delete = async (sessionId) => {
 
 
@@ -86,7 +68,6 @@ exports.delete = async (sessionId) => {
 
 
 //deleteAllExpired()
-
 exports.deleteAllExpired = async() => {
 
     try {
@@ -99,11 +80,7 @@ exports.deleteAllExpired = async() => {
 
 
 
-
-
 //isExpired(SessionID)
-
-
 exports.isExpired = async(sessioniId) => {
 
     try {
