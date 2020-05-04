@@ -18,6 +18,9 @@ function getAskedBy(user_id) {
 }
 
 function add(user_id, context) {
+  if (validator.isEmptyString(context))
+    throw new Error('question context cannot be empty');
+
   return async () => {
     return await dbConnection.query(`INSERT INTO questions VALUES ($1,'$2')`, [
       user_id,
@@ -25,3 +28,9 @@ function add(user_id, context) {
     ]);
   };
 }
+
+module.exports = {
+  add,
+  getAll,
+  getAskedBy,
+};
