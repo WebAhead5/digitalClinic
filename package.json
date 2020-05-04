@@ -1,7 +1,7 @@
 {
   "name": "template",
   "version": "1.0.0",
-  "description": "",
+  "description": "https://hackmd.io/ZZmeojs0RDmmsUkohJ8TAA?edit",
   "main": "src/index.js",
   "scripts": {
     "start": "NODE_ENV=production node ./src/index.js",
@@ -27,5 +27,13 @@
     "express-handlebars": "^4.0.4",
     "pg": "^8.0.3",
     "serve-favicon": "^2.5.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebAhead5/digitalClinic.git"
+  },
+  "bugs": {
+    "url": "https://github.com/WebAhead5/digitalClinic/issues"
+  },
+  "homepage": "https://github.com/WebAhead5/digitalClinic#readme"
 }
