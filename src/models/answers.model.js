@@ -21,12 +21,10 @@ function add(user_id, question_id, context) {
   if (validator.isEmptyString(context))
     throw new Error('message context cannot be empty');
 
-  return async () => {
-    return await dbConnection.query(
-      `INSERT INTO answers VALUES ($1, $2 , '$3')`,
-      [user_id, question_id, context]
-    );
-  };
+  return  dbConnection.query(
+      `INSERT INTO answers (user_id,question_id,answer_context) VALUES ($1, $2 , $3)`,
+      [user_id, question_id, context]);
+
 }
 
 module.exports = {

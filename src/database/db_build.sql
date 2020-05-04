@@ -7,7 +7,9 @@ BEGIN;
 -- ALTER DATABASE project_db OWNER TO super;
 
 
+
 DROP TABLE IF EXISTS users,questions, answers, sessions CASCADE;
+
 
 
 CREATE TABLE users(
@@ -21,27 +23,27 @@ CREATE TABLE users(
 
 CREATE TABLE questions(
                        id SERIAL PRIMARY KEY,
-                       asker_id INTEGER,
-                       FOREIGN KEY (asker_id) REFERENCES users (user_id),
+                       asker_id INTEGER NOT NULL,
+                    -- FOREIGN KEY (asker_id) REFERENCES users (user_id),
                        question_context TEXT NOT NULL,
                        post_time TIMESTAMP DEFAULT NOW()
 );
 
 
 CREATE TABLE answers(
-                       id SERIAL PRIMARY KEY,
-                       question_id INTEGER,
-                       user_id INTEGER,
-                       FOREIGN KEY (question_id) REFERENCES questions (id),
-                       FOREIGN KEY (user_id) REFERENCES users (user_id),
-                       answer_context TEXT NOT NULL,
-                       post_time TIMESTAMP DEFAULT NOW()
+                        id SERIAL PRIMARY KEY,
+                        user_id INTEGER NOT NULL,
+                        question_id INTEGER NOT NULL,
+                  --    FOREIGN KEY (user_id) REFERENCES users (user_id),
+                  --    FOREIGN KEY (question_id) REFERENCES questions (id),
+                        answer_context TEXT NOT NULL,
+                        post_time TIMESTAMP default now()
 );
 
 
 CREATE TABLE sessions(
                        session_id SERIAL PRIMARY KEY,
-                       user_id INTEGER,
+                       user_id INTEGER NOT NULL,
                        FOREIGN KEY (user_id) REFERENCES users (user_id),
                        start_time TIMESTAMP DEFAULT NOW(),
                        duration_min INTEGER
