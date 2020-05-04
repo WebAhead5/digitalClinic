@@ -18,16 +18,15 @@ function getAskedBy(user_id) {
   };
 }
 
-function add(user_id, context) {
+function add(asker_id, context) {
   if (validator.isEmptyString(context))
     throw new Error('question context cannot be empty');
 
-  return async () => {
-    return await dbConnection.query(`INSERT INTO questions VALUES ($1,'$2')`, [
-      user_id,
+  return  dbConnection.query(`INSERT INTO questions (asker_id,question_context) VALUES ($1,$2)`, [
+      asker_id,
       context,
     ]);
-  };
+
 }
 
 module.exports = {

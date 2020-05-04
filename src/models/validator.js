@@ -4,7 +4,7 @@ function isLettersAndSpaces(str) {
 }
 
 function isEmptyString(str) {
-  return str && str.trim();
+  return !str || !str.trim();
 }
 
 function validatePassword(str) {
