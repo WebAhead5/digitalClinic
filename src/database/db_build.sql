@@ -7,7 +7,7 @@ BEGIN;
 -- ALTER DATABASE project_db OWNER TO super;
 
 
-DROP TABLE IF EXISTS users,questions, answers CASCADE;
+DROP TABLE IF EXISTS users,questions, answers, sessions CASCADE;
 
 
 CREATE TABLE users(
@@ -16,7 +16,7 @@ CREATE TABLE users(
                        last_name VARCHAR(100) NOT NULL,
                        email VARCHAR(100) NOT NULL,
                        passsword TEXT NOT NULL,
-                       doctor_certificate VARCHAR(100) NOT NULL
+                       doctor_certificate VARCHAR(100)
 );
 
 CREATE TABLE questions(
@@ -46,15 +46,17 @@ CREATE TABLE sessions(
 );
 
 
---INSERT INTO sitters (name,starting_hour, end_hour, cost)
---VALUES
---       ('a', '7:00', '22:00', '50' ),
---       ('b', '7:00', '22:00', '50' ),
---       ('c', '7:00', '22:00', '50' ),
---       ('d', '7:00', '22:00', '50' ),
---       ('e', '7:00', '22:00', '50' ),
---       ('f', '7:00', '22:00', '50' );
---
+INSERT INTO users (first_name,last_name, email, passsword, doctor_certificate)
+VALUES
+      ('Hashem', 'Jawad', 'hashem@gmail.com', 'hashem$F2', 'ID93849' ),
+      ('Morad', 'Abed', 'morad@gmail.com', 'morad$F2', NULL),
+      ('mehiar', 'sammar', 'mehiar@gmail.com', 'mehiar$F2', 'ID64823' ),
+      ('Moris', 'Rafoul', 'moris@gmail.com', 'mori$F2', 'ID64823' );
+
+
+INSERT INTO questions (asker_id, question_context, post_time)
+VALUES
+      (1, 'why do i have headache?', '2020-01-01 10:10:10');
 
 
 COMMIT;
