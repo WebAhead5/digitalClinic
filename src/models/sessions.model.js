@@ -1,119 +1,94 @@
 const dbConnection = require('../database/db_connection');
 
-
 //getall
+exports.getAll = async () => {
 
-exports.getAll = () => {
 
-    new async function () {
-        try {
+    try {
 
-            let res = await dbConnection.query('SELECT * FROM sessions');
-        }
-        catch (e) {
-            throw new Error("An error occured while retrieving the session's data from the db")
-        }
+        let res = await dbConnection.query(`SELECT users.user_id,users.first_name, users.last_name, users.email,users.doctor_certificate 
+                                            FROM sessions inner join users on sessions.user_id = users.user_id; `);
         return res.rows;
+
+    } catch (e) {
+        throw new Error("An error occured while retrieving the session's data from the db")
     }
-
 }
-
 
 
 //getBySessionId
+exports.getBySessionId = async (sessionId) => {
 
 
-exports.getBySessionId = (sessionid) => {
+    try {
+        let res = await dbConnection.query(`SELECT users.user_id,users.first_name, users.last_name, users.email,users.doctor_certificate 
+                                            FROM sessions inner join users on sessions.user_id = users.user_id where session_id = $1 ; `, [sessionId]);
 
-    new async function () {
-        try {
-
-            let res = await dbConnection.query('SELECT * FROM sessions where session_id = $1 ' ,[sessionid]);
-        }
-        catch (e) {
-            throw new Error("An error occured while retrieving the session from the db")
-        }
         return res.rows;
-    }
 
+    } catch (e) {
+        throw new Error("An error occurred while retrieving the session from the db")
+    }
 }
 
 
 
+exports.add = async (userId, duration) => {
 
-//add(userID,duration)
+    try {
 
+        await dbConnection.query('INSERT INTO sessions (user_id,duration_min) VALUES ($1,$2)', [userId, duration]);
+        let res = await dbConnection.query(`SELECT users.user_id,users.first_name, users.last_name, users.email,users.doctor_certificate 
+                                            FROM sessions inner join users on sessions.user_id = users.user_id where sessions.user_id = $1 ; `, [userId]);
 
-exports.addsession = (userid,duration) => {
+        return res.rows[res.rows.length -1];
 
-    new async function () {
-        try {
-
-            let res = await dbConnection.query('INSERT INTO sessions (user_id,duration_min) VALUES ($1,$2)',[userid,duration]);
-        }
-        catch (e) {
-            throw new Error("An error occured while adding the session to the db")
-        }
-        return res.rows;
+    } catch (e) {
+        throw new Error("An error occured while adding the session to the db")
     }
-
 }
-
 
 
 
 //delete(SessionID)
+exports.delete = async (sessionId) => {
 
 
-exports.deletesession = (sessionid) => {
+    try {
 
-    new async function () {
-        try {
+       let res = await dbConnection.query('DELETE FROM sessions WHERE session_id = $1', [sessionId]);
+        return res.rowCount;
 
-            let res = await dbConnection.query('DELETE FROM sessions WHERE session_id = $1',[sessionid]);
-        }
-        catch (e) {
-            throw new Error("An error occured while deleting the session to the db")
-        }
-        return res.rows;
+    } catch (e) {
+        throw new Error("An error occured while deleting the session to the db")
     }
+
 
 }
 
 
 //deleteAllExpired()
+exports.deleteAllExpired = async() => {
 
-exports.deleteAllExpired = () => {
-
-    new async function () {
-        try {
-
-            let res = await dbConnection.query("DELETE FROM sessions WHERE start_time+(duration_min*INTERVAL'1 minutes')<=now()");
-        }
-        catch (e) {
-            throw new Error("An error occured while deleting the session to the db")
-        }
-        return res.rows;
+    try {
+        let res = await dbConnection.query("DELETE FROM sessions WHERE start_time+(duration_min*INTERVAL'1 minutes')<=now()");
+        return res.rowCount;
+    } catch (e) {
+        throw new Error("An error occured while deleting the session to the db")
     }
-
 }
 
 
 
 //isExpired(SessionID)
+exports.isExpired = async(sessioniId) => {
 
+    try {
 
-exports.isExpired = (sessionid) => {
+        let res = await dbConnection.query("SELECT FROM sessions WHERE session_id=$1 & start_time+(duration_min*INTERVAL'1 minutes')<=now()", [sessioniId]);
+        return res.rows.length === 0;
 
-    new async function () {
-        try {
-
-            let res = await dbConnection.query("SELECT FROM sessions WHERE session_id=$1 & start_time+(duration_min*INTERVAL'1 minutes')<=now()",[sessionid]);
-        }
-        catch (e) {
-            throw new Error("An error occured while deleting the session to the db")
-        }
-        return res.rows.length===0;
+    } catch (e) {
+        throw new Error("An error occured while deleting the session to the db")
     }
-
 }

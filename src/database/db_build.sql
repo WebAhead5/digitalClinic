@@ -16,7 +16,7 @@ CREATE TABLE users(
                        user_id SERIAL PRIMARY KEY,
                        first_name VARCHAR(100) NOT NULL,
                        last_name VARCHAR(100) NOT NULL,
-                       email VARCHAR(100) NOT NULL,
+                       email VARCHAR(100) unique NOT NULL ,
                        password TEXT NOT NULL,
                        doctor_certificate VARCHAR(100)
 );
@@ -44,13 +44,13 @@ CREATE TABLE answers(
 CREATE TABLE sessions(
                        session_id SERIAL PRIMARY KEY,
                        user_id INTEGER NOT NULL,
-                       FOREIGN KEY (user_id) REFERENCES users (user_id),
+                       -- FOREIGN KEY (user_id) REFERENCES users (user_id),
                        start_time TIMESTAMP DEFAULT NOW(),
                        duration_min INTEGER
 );
 
 
-INSERT INTO users (first_name,last_name, email, passsword, doctor_certificate)
+INSERT INTO users (first_name,last_name, email, password, doctor_certificate)
 VALUES
       ('Hashem', 'Jawad', 'hashem@gmail.com', 'hashem$F2', 'ID93849' ),
       ('Morad', 'Abed', 'morad@gmail.com', 'morad$F2', NULL),
