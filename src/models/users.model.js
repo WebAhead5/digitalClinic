@@ -2,57 +2,53 @@ const dbConnection = require('../database/db_connection');
 
 
 //getAll
-exports.getAll = () => {
+exports.getAll = async() => {
 
-    new async function () {
-        try {
 
-            let res = await dbConnection.query('SELECT * FROM users');
-        }
-        catch (e) {
-            throw new Error("An error occured while retrieving the doctors list from the db")
-        }
+    try {
+
+        let res = await dbConnection.query('SELECT * FROM users');
         return res.rows;
-    }
 
+    } catch (e) {
+        throw new Error("An error occured while retrieving the doctors list from the db")
+    }
 }
+
+
 
 
 //getDoctors
 
-exports.getDoctors = () => {
+exports.getDoctors = async () => {
 
-
-    return async () => {
-        try {
-
-            let res = await dbConnection.query('SELECT * FROM users WHERE doctor_certificate IS NOT NULL');
-        }
-        catch (e) {
-            throw new Error("An error occured while retrieving the doctors list from the db")
-        }
+    try {
+        let res = await dbConnection.query('SELECT * FROM users WHERE doctor_certificate IS NOT NULL');
         return res.rows;
+
+    } catch (e) {
+        throw new Error("An error occured while retrieving the doctors list from the db")
     }
 
 }
+
+
 
 
 //getNonDoctors
 
 
-exports.getNonDoctors = () => {
+exports.getNonDoctors = async () => {
 
-    return async () => {
-        try {
 
-            let res = await dbConnection.query('SELECT * FROM users WHERE doctor_certificate IS NULL');
-        }
-        catch (e) {
-            throw new Error("An error occured while retrieving the patients list from the db")
-        }
+    try {
+
+        let res = await dbConnection.query('SELECT * FROM users WHERE doctor_certificate IS NULL');
         return res.rows;
-    }
 
+    } catch (e) {
+        throw new Error("An error occured while retrieving the patients list from the db")
+    }
 
 
 }
@@ -61,16 +57,14 @@ exports.getNonDoctors = () => {
 //getUserByEmail
 
 
-exports.getUserByEmail = (email) => {
+exports.getUserByEmail = async (email) => {
 
-    return async () => {
-        try {
-            let res = await dbConnection.query('SELECT * FROM users WHERE email = $1', [email]);
-        }
-        catch (e) {
-            throw new Error("An error occured while retrieving users from the db")
-        }
+    try {
+        let res = await dbConnection.query('SELECT * FROM users WHERE email = $1', [email]);
         return res.rows;
+
+    } catch (e) {
+        throw new Error("An error occured while retrieving users from the db")
     }
 
 }
@@ -78,31 +72,32 @@ exports.getUserByEmail = (email) => {
 
 //getUserById
 
-exports.getUserById = (userId) => {
-    return async () => {
-        try {
-            let res = await dbConnection.query('SELECT * FROM users WHERE user_id = $1', [userId]);
-        }
-        catch (e) {
-            throw new Error("An error occured while retrieving the users from the db")
-        }
+exports.getUserById = async (userId) => {
+
+    try {
+        let res = await dbConnection.query('SELECT * FROM users WHERE user_id = $1', [userId]);
         return res.rows;
+    } catch (e) {
+        throw new Error("An error occured while retrieving the users from the db")
     }
+
 }
 
 
 
 //add(firstname, lastname, email, certificate)
 
-exports.addUser = (firstname, lastname, email, doctor_certificate) => {
-    return async () => {
+exports.add = async (firstname, lastname, email, doctor_certificate) => {
+
         try {
-            let res = await dbConnection.query('INSERT INTO users (firstname, lastname, email, doctor_certificate) VALUES ($1,$2,$3,$4)', [firstname, lastname, email, doctor_certificate]);
+            await dbConnection.query('INSERT INTO users (firstname, lastname, email, doctor_certificate) VALUES ($1,$2,$3,$4)', [firstname, lastname, email, doctor_certificate]);
+            let res = await dbConnection.query('select * from sessions where email = $1', [email]);
+            return res.rows[0];
+
         }
         catch (e) {
             throw new Error("An error occured while adding user to the database")
         }
-        return res.rows;
-    }
+
 }
 
