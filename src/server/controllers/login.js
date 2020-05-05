@@ -17,7 +17,7 @@ exports.post = async (req, res, next) => {
             });
         }
 
-        res.locals.login.userID = emaildb.user_id;
+        res.locals.loginUserID = emaildb.user_id;
         next()
     }
     catch (e) {
