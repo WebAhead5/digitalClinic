@@ -8,6 +8,7 @@ const {redirectHome} = require('./middlewares/index')
 //import controllers/handlers - todo import the handlers
 
 const homeRoute = require("./controllers/homeRoute");
+const login = require('./controllers/login');
 const registerRoute = require('./controllers/registerRoute')
 const error = require('./controllers/error');
 const logOut = require('./controllers/logout');
@@ -17,6 +18,7 @@ const logOut = require('./controllers/logout');
 //assign handlers to routes - todo assign imported handlers
 
 router.get("/",homeRoute.get);
+router.get('/login', login.authenticate);
 
 // router.get("/register",redirectHome,registerRoute.get);
 // router.post("/register",redirectHome,registerRoute.post);
