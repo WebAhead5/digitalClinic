@@ -110,7 +110,7 @@ exports.add = async (firstName, lastName, email, doctorCertificate, password) =>
         (first_name, last_name, email, doctor_certificate, password)
         VALUES ($1,$2,$3,$4, $5)`, [firstName, lastName, email, doctorCertificate, password]);
         let res = await dbConnection.query('select * from users where email = $1', [email]);
-        return res.rows;
+        return res.rows[0];
     }
     catch (e) {
         throw new Error("An error occured while adding user to the database")

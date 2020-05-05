@@ -52,8 +52,11 @@ console.log(req.body)
     //await inside the try - in this case, add func will run and just after the res of 
     //Add func it will proceed to res.redirects
     try {
-        await add(firstName, lastName, email, doctorCertificate, password)
-        res.redirect('/home')
+       const userObj = await add(firstName, lastName, email, doctorCertificate, password) 
+        
+        res.locals.loginUserID = userObj.user_id;
+        next()
+    
     } catch (error) {
         console.log(error.message)
         next( new Error('the error in the register post'))
