@@ -14,23 +14,26 @@ exports.post = async (req, res, next) => {
     const { firstName, lastName, email, password, confirmpassword, doctorCertificate } = req.body;
 console.log(req.body)
 
-    
-
-    if(!validatePassword(password)){
+    //check password straight
+    let validation = validatePassword(password)
+    if(!validation.isValid){
         return res.render('register', {
             title:"register",
-            error: errorMessage
+            error: validation.errorMessage
         })
-    } 
+    }
 
-    if (!passwordsMatch(password, confirmpassword))
+    //check compare password fields
+    validation = passwordsMatch(password, confirmpassword))
+    if(!validation.isValid){
         return res.render('register', {
-            title: "register",
-            error: errorMessage
-        });
+            title:"register",
+            error: validation.errorMessage
+        })
+    }
 
 
-
+    //check if email has already been used
     let userData;
     try {   
         userData = await getUserByEmail(email)
@@ -48,13 +51,17 @@ console.log(req.body)
             error: "Email is already in use!"
         })
 
-        //hashing pass
-    //await inside the try - in this case, add func will run and just after the res of 
-    //Add func it will proceed to res.redirects
+
+    //todo hashing pass
+
     try {
-       const userObj = await add(firstName, lastName, email, doctorCertificate, password) 
-        
+       //add user to the database
+       const userObj = await add(firstName, lastName, email, doctorCertificate, password)
+
+        //store user id in a locals inorder to create a session for him
         res.locals.loginUserID = userObj.user_id;
+
+       //go to createSession middleware
         next()
     
     } catch (error) {
