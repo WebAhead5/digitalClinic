@@ -3,7 +3,12 @@ const jwt = require("jsonwebtoken")
 
 
 async function validateCredentials(req,res,next) {
-    let token =req.cookie("user_token");
+
+    let token;
+
+    if(req.cookies)
+        token =req.cookies.user_token;
+
     if(token) {
 
         let jwtSecret = process.env.JWT_SECRET;
