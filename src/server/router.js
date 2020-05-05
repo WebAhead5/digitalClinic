@@ -20,10 +20,6 @@ const logOut = require('./controllers/logout');
 router.get("/",homeRoute.get);
 router.get('/login', login.authenticate);
 
-// router.get("/register",redirectHome,registerRoute.get);
-// router.post("/register",redirectHome,registerRoute.post);
-// router.get("/register",registerRoute.get);
-// router.post("/register",registerRoute.post);
 router.route('/register').get(registerRoute.get).post(registerRoute.post)
 
 
