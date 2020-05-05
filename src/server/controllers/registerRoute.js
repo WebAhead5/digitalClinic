@@ -24,7 +24,7 @@ console.log(req.body)
     }
 
     //check compare password fields
-    validation = passwordsMatch(password, confirmpassword))
+    validation = passwordsMatch(password, confirmpassword)
     if(!validation.isValid){
         return res.render('register', {
             title:"register",
