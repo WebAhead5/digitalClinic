@@ -4,6 +4,7 @@ const favicon = require('serve-favicon');
 const handlebars = require('express-handlebars');
 const hbsHelpers = require('../views/viewHelpers');
 const router = require('./router');
+const cookieParser = require("cookie-parser")
 
 //setup environment variables
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
@@ -14,6 +15,10 @@ const app = express();
 //use express body-parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+//user express cookie-parser
+app.use(cookieParser());
+
 
 //setup the fav-icon using serve-favicon
 app.use(
