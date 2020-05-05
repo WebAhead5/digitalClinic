@@ -62,7 +62,7 @@ exports.getUserByEmail = async (email) => {
 
     try {
         let res = await dbConnection.query('SELECT * FROM users WHERE email = $1', [email]);
-        return res.rows;
+        return res.rows[0];
 
     } catch (e) {
         throw new Error("An error occured while retrieving users from the db")
@@ -77,7 +77,7 @@ exports.getUserById = async (userId) => {
 
     try {
         let res = await dbConnection.query('SELECT * FROM users WHERE user_id = $1', [userId]);
-        return res.rows;
+        return res.rows[0];
     } catch (e) {
         throw new Error("An error occured while retrieving the users from the db")
     }
