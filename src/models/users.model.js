@@ -77,6 +77,12 @@ exports.getUserByEmail = async (email) => {
 
 exports.getUserById = async (userId) => {
 
+
+    if (typeof userId !== 'number')
+        throw new Error("user id (getUserById) must be a number");
+
+
+
     try {
         let res = await dbConnection.query('SELECT * FROM users WHERE user_id = $1', [userId]);
         return res.rows[0];
