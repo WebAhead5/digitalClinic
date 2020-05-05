@@ -85,8 +85,8 @@ exports.isExpired = async(sessioniId) => {
 
     try {
 
-        let res = await dbConnection.query("SELECT FROM sessions WHERE session_id=$1 & start_time+(duration_min*INTERVAL'1 minutes')<=now()", [sessioniId]);
-        return res.rows.length === 0;
+        let res = await dbConnection.query("SELECT FROM sessions WHERE session_id=$1 and start_time+(duration_min*INTERVAL'1 minutes') <= now()", [sessioniId]);
+        return res.rows.length !== 0;
 
     } catch (e) {
         throw new Error("An error occured while deleting the session to the db")
