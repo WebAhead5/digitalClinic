@@ -19,7 +19,7 @@ const createSession = require("./middleware/createSession")
 
 router.use(validateLogin);
 router.get("/",homeRoute.get);
-router.get('/login', login.authenticate,createSession);
+router.route('/login').get(login.get).post(login.post);
 router.route('/register').get(registerRoute.get).post(registerRoute.post,createSession)
 router.get('/logout', logOut.get);
 router.get('/questions',questions.get);

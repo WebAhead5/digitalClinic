@@ -2,7 +2,7 @@ const {getUserByEmail} = require('../../models/users.model');
 const bcrypt = require('bcrypt');
 
 
-exports.authenticate = async (req, res, next) => {
+exports.post = async (req, res, next) => {
 
     const { email, password } = req.body;
 
@@ -28,4 +28,7 @@ exports.authenticate = async (req, res, next) => {
 }
 
 
+exports.get = (req,res)=>{
+    res.render("login",{})
 
+}
