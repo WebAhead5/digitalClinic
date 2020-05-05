@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "NODE_ENV=production node ./src/index.js",
-    "dev": "NODE_ENV=development nodemon ./src/index.js",
+    "dev": "NODE_ENV=production nodemon ./src/index.js",
     "test": "NODE_ENV=development tape ./testing/*.test.js | tap-diff",
     "test_server": "NODE_ENV=development tape ./testing/server.test.js | tap-diff",
     "test_db": "NODE_ENV=development tape ./testing/database.test.js | tap-diff",

@@ -1,4 +1,4 @@
-const {getUserByEmail} = require('../../models/users.model');
+const { getUserByEmail } = require('../../models/users.model');
 const bcrypt = require('bcrypt');
 
 
@@ -6,11 +6,16 @@ exports.post = async (req, res, next) => {
 
     const { email, password } = req.body;
 
-    const emaildb = await getUserByEmail(email);
-
     try {
+        const emaildb = await getUserByEmail(email);
 
-        let result = await bcrypt.compare(password, emaildb.password);
+        if (!emaildb)
+            return res.render("login", {
+                error: 'Email does not exist'
+            })
+
+        // let result = await bcrypt.compare(password, emaildb.password);
+        let result = (password === emaildb.password)
         if (!result) {
             return res.render('login', {
                 error: 'Password is incorrect'
@@ -28,7 +33,7 @@ exports.post = async (req, res, next) => {
 }
 
 
-exports.get = (req,res)=>{
-    res.render("login",{})
+exports.get = (req, res) => {
+    res.render("login", {})
 
 }

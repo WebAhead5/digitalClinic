@@ -60,7 +60,7 @@ exports.getNonDoctors = async () => {
 exports.getUserByEmail = async (email) => {
     try {
         let res = await dbConnection.query('SELECT * FROM users WHERE email = $1', [email]);
-        console.log('the res',res)
+        // console.log('the res',res)
         if(res.rows.length == 0)
         return;
         return res.rows[0];

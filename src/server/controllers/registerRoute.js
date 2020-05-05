@@ -12,7 +12,7 @@ exports.get = (req, res) => {
 //{ isEmptyString, isLettersAndSpaces, validatePassword, passwordsMatch }
 exports.post = async (req, res, next) => {
     const { firstName, lastName, email, password, confirmpassword, doctorCertificate } = req.body;
-console.log(req.body)
+    console.log(req.body)
 
     //check password straight
     let validation = validatePassword(password)
@@ -35,7 +35,7 @@ console.log(req.body)
 
     //check if email has already been used
     let userData;
-    try {   
+    try {
         userData = await getUserByEmail(email)
 
     } catch (e) {
@@ -66,7 +66,7 @@ console.log(req.body)
     
     } catch (error) {
         console.log(error.message)
-        next( new Error('the error in the register post'))
+        next(new Error('the error in the register post'))
     }
 }
 
