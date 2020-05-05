@@ -10,23 +10,29 @@ exports.get = (req, res) => {
 
 
 //{ isEmptyString, isLettersAndSpaces, validatePassword, passwordsMatch }
-exports.post = async (req, res) => {
-    const { firstname, lastname, email, password, confirmPassword } = req.body;
+exports.post = async (req, res, next) => {
+    const { firstName, lastName, email, password, confirmpassword, doctorCertificate } = req.body;
+console.log(req.body)
 
+    
 
-    console.log('the get element', req.body)
+    if(!validatePassword(password)){
+        return res.render('register', {
+            title:"register",
+            error: errorMessage
+        })
+    } 
 
-
-    if (!passwordsMatch(password, confirmPassword))
+    if (!passwordsMatch(password, confirmpassword))
         return res.render('register', {
             title: "register",
-            error: 'Passwords do not match!'
+            error: errorMessage
         });
 
 
 
     let userData;
-    try {
+    try {   
         userData = await getUserByEmail(email)
 
     } catch (e) {
@@ -42,12 +48,16 @@ exports.post = async (req, res) => {
             error: "Email is already in use!"
         })
 
-//await inside the try - in this case, add func will run and just after the res of 
-//Add func it will proceed to res.redirects
+        //hashing pass
+    //await inside the try - in this case, add func will run and just after the res of 
+    //Add func it will proceed to res.redirects
     try {
-        await add(firstName, lastName, email, doctorCertificate)
+        await add(firstName, lastName, email, doctorCertificate, password)
         res.redirect('/home')
     } catch (error) {
-        throw new Error('not')
+        console.log(error.message)
+        next( new Error('the error in the register post'))
     }
 }
+
+
