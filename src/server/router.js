@@ -1,14 +1,6 @@
 //create router
 const router = require('express').Router();
 
-<<<<<<< HEAD
-//import controllers/handlers - todo import the handlers
-=======
-//register Middlewares
-const {redirectHome} = require('./middlewares/index')
-
->>>>>>> 3eb5da078369c7ad241430a48c6fbc1a3394bc67
-
 const homeRoute = require("./controllers/homeRoute");
 const login = require('./controllers/login');
 const registerRoute = require('./controllers/registerRoute')

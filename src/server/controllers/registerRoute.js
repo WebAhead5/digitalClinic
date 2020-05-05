@@ -12,27 +12,30 @@ exports.get = (req, res) => {
 //{ isEmptyString, isLettersAndSpaces, validatePassword, passwordsMatch }
 exports.post = async (req, res, next) => {
     const { firstName, lastName, email, password, confirmpassword, doctorCertificate } = req.body;
-console.log(req.body)
+    console.log(req.body)
 
-    
-
-    if(!validatePassword(password)){
-        return res.render('register', {
-            title:"register",
-            error: errorMessage
-        })
-    } 
-
-    if (!passwordsMatch(password, confirmpassword))
+    //check password straight
+    let validation = validatePassword(password)
+    if (!validation.isValid) {
         return res.render('register', {
             title: "register",
-            error: errorMessage
-        });
+            error: validation.errorMessage
+        })
+    }
+
+    //check compare password fields
+    validation = passwordsMatch(password, confirmpassword)
+    if (!validation.isValid) {
+        return res.render('register', {
+            title: "register",
+            error: validation.errorMessage
+        })
+    }
 
 
-
+    //check if email has already been used
     let userData;
-    try {   
+    try {
         userData = await getUserByEmail(email)
 
     } catch (e) {
@@ -48,15 +51,21 @@ console.log(req.body)
             error: "Email is already in use!"
         })
 
-        //hashing pass
-    //await inside the try - in this case, add func will run and just after the res of 
-    //Add func it will proceed to res.redirects
+
+    //todo hashing pass
+
     try {
-        await add(firstName, lastName, email, doctorCertificate, password)
-        res.redirect('/home')
+        //add user to the database
+        const userObj = await add(firstName, lastName, email, doctorCertificate, password)
+
+        res.locals.loginUserID = userObj.user_id;
+
+        //go to createSession middleware
+        next()
+
     } catch (error) {
         console.log(error.message)
-        next( new Error('the error in the register post'))
+        next(new Error('the error in the register post'))
     }
 }
 
