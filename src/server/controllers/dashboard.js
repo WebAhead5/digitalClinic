@@ -1,6 +1,3 @@
-
-
-
 const questionsM = require("../../models/questions.model");
 const answersM = require("../../models/answers.model");
 
@@ -32,6 +29,21 @@ exports.get = async (req,res,next)=> {
     }
 
 
+}
 
-1
+
+exports.post = async (req,res)=> {
+
+    const {context}=req.body;
+    console.log(res.locals.user)
+
+    const questiondata= await questionsM.add(res.locals.user.id,context)
+    
+    console.log(questiondata)
+
+    res.redirect(`/question/${questiondata.id}`)
+
+
+
+
 }

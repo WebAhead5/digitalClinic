@@ -2,7 +2,7 @@
 
 
 <form id="question" method="post" action="/dashboard">
-    <input type="text" alt="ask a question" required>
+    <input type="text" name ='context' alt="ask a question" required>
     <input type="submit" value="ask">
     <input type="hidden" name="_csrf" value="{{csrfToken}}">
 </form>

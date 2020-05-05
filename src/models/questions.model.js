@@ -44,6 +44,10 @@ async function add(asker_id, context) {
       context,
     ]);
 
+    let qobj = await dbConnection.query(`SELECT * FROM questions where asker_id = $1 and
+     question_context =$2`,[asker_id,context])
+     return qobj.rows[qobj.rows.length-1]
+
 
 }
 
