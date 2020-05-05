@@ -38,13 +38,12 @@ exports.getBySessionId = async (sessionId) => {
 
 exports.add = async (userId, duration) => {
 
-    if (typeof userId !== 'number')
-        throw new Error("user id (addSession model) must be a number");
+        // if (typeof userId !== 'number')
+        //     throw new Error("user id (addSession model) must be a number");
 
 
-    if (typeof duration !== 'number')
-        throw new Error("user id (addSession model) must be a number");
-
+        // if (typeof duration !== 'number')
+        //     throw new Error("duration (addSession model) must be a number");
 
 
     try {

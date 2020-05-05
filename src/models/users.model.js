@@ -108,7 +108,7 @@ exports.add = async (firstName, lastName, email, doctorCertificate, password) =>
 
 
     // if (!validator.isEmptyString(firstName) || !validator.isEmptyString(lastName))
-    //     throw new Error("Name cant be empty");
+    //     throw new Error("user id id cant be empty");
 
     try {
         console.log('this is the try', firstName, lastName, email,doctorCertificate);
