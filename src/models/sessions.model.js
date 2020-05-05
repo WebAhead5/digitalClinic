@@ -24,7 +24,7 @@ exports.getBySessionId = async (sessionId) => {
         let res = await dbConnection.query(`SELECT session_id,users.user_id,users.first_name, users.last_name, users.email,users.doctor_certificate 
                                             FROM sessions inner join users on sessions.user_id = users.user_id where session_id = $1 ; `, [sessionId]);
 
-        return res.rows;
+        return res.rows.length? res.rows[0]: undefined;
 
     } catch (e) {
         throw new Error("An error occurred while retrieving the session from the db")
