@@ -15,11 +15,11 @@ const createSession = require("./middleware/createSession")
 //assign handlers to routes - todo assign imported handlers
 router.use(validateLogin);
 
-router.get("/",homeRoute.get);
-router.get('/login', login.authenticate,createSession);
+router.get("/", homeRoute.get);
+router.get('/login', login.authenticate, createSession);
 router.route('/register').get(registerRoute.get).post(registerRoute.post)
 router.get('/logout', logOut.get);
-router.get('/questions',questions.get );
+router.get('/questions', questions.get);
 
 //error handling
 router.use(error.client);

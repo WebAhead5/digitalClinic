@@ -3,6 +3,7 @@ function isLettersAndSpaces(str) {
   return str && str.trim() && regex.test(str);
 }
 
+
 function isEmptyString(str) {
   return !str || !str.trim();
 }
@@ -48,10 +49,35 @@ function validatePassword(str) {
 
 
 function passwordsMatch(password, confirmPassword) {
-  if (password !== confirmPassword){
-    return false;
-  } true
+  let isValid;
+  let errorMessage;
+  
+  if (isValid == password !== confirmPassword) {
+    errorMessage = "passwords do not match"
+    return {isValid, errorMessage};
+  } 
 }
 
 
-module.exports = { isEmptyString, isLettersAndSpaces, validatePassword, passwordsMatch };
+function validateEmail(email) {
+  let isValid;
+  let errorMessage;
+  const regex = /^[a-z0-9_.\-]+@[a-z0-9\-_]+[.a-z0-9\-_]+/i;
+
+  isValid = regex.test(email);
+
+  if (!isValid)
+    errorMessage = "Email is invalid!"
+
+  return { isValid, errorMessage }
+}
+
+
+
+module.exports = {
+  isEmptyString,
+  isLettersAndSpaces,
+  validatePassword,
+  passwordsMatch,
+  validateEmail
+};
