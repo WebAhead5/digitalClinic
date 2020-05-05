@@ -2,7 +2,7 @@
 const router = require('express').Router();
 
 //register Middlewares
-const {redirectHome} = require('./middlewares/index')
+
 
 
 const homeRoute = require("./controllers/homeRoute");
