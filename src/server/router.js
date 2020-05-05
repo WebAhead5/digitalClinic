@@ -18,7 +18,7 @@ router.route('/login').get(login.get).post(login.post,createSession);
 router.route('/register').get(registerRoute.get).post(registerRoute.post,createSession)
 router.get('/logout', logOut.get);
 router.get('/questions',questions.get);
-router.get("/dashboard",dashBoard.get)
+router.route("/dashboard").get(dashBoard.get).post(dashBoard.post)
 
 
 //error handling
