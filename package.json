@@ -25,6 +25,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-handlebars": "^4.0.4",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^8.0.3",
     "serve-favicon": "^2.5.0"
   },
