@@ -21,7 +21,7 @@ exports.getBySessionId = async (sessionId) => {
 
 
     try {
-        let res = await dbConnection.query(`SELECT users.user_id,users.first_name, users.last_name, users.email,users.doctor_certificate 
+        let res = await dbConnection.query(`SELECT session_id,users.user_id,users.first_name, users.last_name, users.email,users.doctor_certificate 
                                             FROM sessions inner join users on sessions.user_id = users.user_id where session_id = $1 ; `, [sessionId]);
 
         return res.rows;
@@ -38,7 +38,7 @@ exports.add = async (userId, duration) => {
     try {
 
         await dbConnection.query('INSERT INTO sessions (user_id,duration_min) VALUES ($1,$2)', [userId, duration]);
-        let res = await dbConnection.query(`SELECT users.user_id,users.first_name, users.last_name, users.email,users.doctor_certificate 
+        let res = await dbConnection.query(`SELECT session_id,users.user_id,users.first_name, users.last_name, users.email,users.doctor_certificate 
                                             FROM sessions inner join users on sessions.user_id = users.user_id where sessions.user_id = $1 ; `, [userId]);
 
         return res.rows[res.rows.length -1];
