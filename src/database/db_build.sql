@@ -26,7 +26,7 @@ CREATE TABLE questions(
                        asker_id INTEGER NOT NULL,
                     -- FOREIGN KEY (asker_id) REFERENCES users (user_id),
                        question_context TEXT NOT NULL,
-                       post_time TIMESTAMP DEFAULT NOW()
+                       post_time timestamp with time zone DEFAULT NOW()
 );
 
 
@@ -37,7 +37,7 @@ CREATE TABLE answers(
                   --    FOREIGN KEY (user_id) REFERENCES users (user_id),
                   --    FOREIGN KEY (question_id) REFERENCES questions (id),
                         answer_context TEXT NOT NULL,
-                        post_time TIMESTAMP default now()
+                        post_time timestamp with time zone default now()
 );
 
 
@@ -45,7 +45,7 @@ CREATE TABLE sessions(
                        session_id SERIAL PRIMARY KEY,
                        user_id INTEGER NOT NULL,
                        -- FOREIGN KEY (user_id) REFERENCES users (user_id),
-                       start_time TIMESTAMP DEFAULT NOW(),
+                       start_time timestamp with time zone DEFAULT NOW(),
                        duration_min INTEGER
 );
 
