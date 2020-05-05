@@ -51,11 +51,12 @@ function validatePassword(str) {
 function passwordsMatch(password, confirmPassword) {
   let isValid;
   let errorMessage;
-  
-  if (isValid == password !== confirmPassword) {
+
+  isValid = password === confirmPassword;
+  if (!isValid) {
     errorMessage = "passwords do not match"
-    return {isValid, errorMessage};
-  } 
+  }
+  return {isValid, errorMessage};
 }
 
 
