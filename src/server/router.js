@@ -11,14 +11,28 @@ const dashBoard = require("./controllers/dashboard")
 
 const validateLogin = require("./middleware/validateCookie")
 const createSession = require("./middleware/createSession")
+const redirection = require("./middleware/loggedInRedirection")
 
 
 router.use(validateLogin);
+
+router.route('/login')
+    .all(redirection.ifLoggedIn("/dashboard"))
+    .get(login.get)
+    .post(login.post,createSession);
+
+router.route('/register')
+    .all(redirection.ifLoggedIn("/dashboard"))
+    .get(registerRoute.get)
+    .post(registerRoute.post,createSession)
+
+router.route("/dashboard")
+    .all(redirection.ifNotLoggedIn("/login"))
+    .get(dashBoard.get)
+    .post(dashBoard.post)
+
 router.get("/",homeRoute.get);
-router.route('/login').get(login.get).post(login.post,createSession);
-router.route('/register').get(registerRoute.get).post(registerRoute.post,createSession)
-router.get('/questions',questions.get);
-router.route("/dashboard").get(dashBoard.get).post(dashBoard.post)
+router.get('/questions', redirection.ifNotLoggedIn("/login"),questions.get);
 router.get('/logout', logout.get);
 
 
