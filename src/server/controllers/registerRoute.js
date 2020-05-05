@@ -16,18 +16,18 @@ exports.post = async (req, res, next) => {
 
     //check password straight
     let validation = validatePassword(password)
-    if (!validation.isValid) {
+    if(!validation.isValid){
         return res.render('register', {
-            title: "register",
+            title:"register",
             error: validation.errorMessage
         })
     }
 
     //check compare password fields
     validation = passwordsMatch(password, confirmpassword)
-    if (!validation.isValid) {
+    if(!validation.isValid){
         return res.render('register', {
-            title: "register",
+            title:"register",
             error: validation.errorMessage
         })
     }
@@ -55,14 +55,15 @@ exports.post = async (req, res, next) => {
     //todo hashing pass
 
     try {
-        //add user to the database
-        const userObj = await add(firstName, lastName, email, doctorCertificate, password)
+       //add user to the database
+       const userObj = await add(firstName, lastName, email, doctorCertificate, password)
 
+        //store user id in a locals inorder to create a session for him
         res.locals.loginUserID = userObj.user_id;
 
-        //go to createSession middleware
+       //go to createSession middleware
         next()
-
+    
     } catch (error) {
         console.log(error.message)
         next(new Error('the error in the register post'))

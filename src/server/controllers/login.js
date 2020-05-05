@@ -21,7 +21,7 @@ exports.post = async (req, res, next) => {
                 error: 'Password is incorrect'
             });
         }
-        
+
         res.locals.loginUserID = emaildb.user_id;
         next()
     }
