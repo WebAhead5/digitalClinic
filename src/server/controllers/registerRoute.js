@@ -4,7 +4,7 @@ const { getUserByEmail, add } = require('../../models/users.model')
 const helpers = require('../../views/viewHelpers')
 
 const bcrypt = require('bcrypt')
-const saltRounds = process.env.HASH_ITERATIONS;
+const saltRounds = parseInt(process.env.HASH_ITERATIONS);
 
 
 exports.get = (req, res) => {
@@ -17,7 +17,7 @@ exports.get = (req, res) => {
 //{ isEmptyString, isLettersAndSpaces, validatePassword, passwordsMatch }
 exports.post = async (req, res, next) => {
     const { firstName, lastName, email, password, confirmpassword, doctorCertificate } = req.body;
-    console.log(req.body)
+    // console.log(req.body)
 
     //check password straight
     let validation = validatePassword(password)

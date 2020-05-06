@@ -60,7 +60,7 @@ exports.getNonDoctors = async () => {
 exports.getUserByEmail = async (email) => {
     try {
         let res = await dbConnection.query('SELECT * FROM users WHERE email = $1', [email]);
-        console.log('the res',res)
+        // console.log('the res',res)
         if(res.rows.length == 0)
         return;
         return res.rows[0];
@@ -111,7 +111,7 @@ exports.add = async (firstName, lastName, email, doctorCertificate, password) =>
     //     throw new Error("user id id cant be empty");
 
     try {
-        console.log('this is the try', firstName, lastName, email,doctorCertificate);
+        // console.log('this is the try', firstName, lastName, email,doctorCertificate);
         await dbConnection.query(`INSERT INTO users
         (first_name, last_name, email, doctor_certificate, password)
         VALUES ($1,$2,$3,$4, $5)`, [firstName, lastName, email, doctorCertificate, password]);
