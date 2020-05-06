@@ -1,11 +1,17 @@
 <h1>Register</h1>
+<a href='/register' id="doctor" onclick="toggler()">Doctor</a>
+<a href='/register' id="patient">Patient</a>
+
+<hr>
+
 <form method='post' action='/register'>
+
     <input type='name' name='firstName' placeholder='First Name' required />
     <input type='name' name='lastName' placeholder='Last Name' required />
     <input type='email' name='email' placeholder='Email' />
     <input type='password' name='password' placeholder='Password' required />
     <input type='password' name='confirmpassword' placeholder='Confirm Password' required />
-    <input type='number' name='doctorCertificate' placeholder='Doctor Certificate' required />
+    <input type='number' name='doctorCertificate' id='doctorCertificate' placeholder='Doctor Certificate' required />
     <input id="submit" type="submit" value="Submit">
 </form>
 

@@ -14,8 +14,9 @@ exports.post = async (req, res, next) => {
                 error: 'Email does not exist'
             })
 
-        // let result = await bcrypt.compare(password, emaildb.password);
-        let result = (password === emaildb.password)
+        let result = await bcrypt.compare(password, emaildb.password);
+        // let result = (password === emaildb.password)
+        console.log(emaildb.password)
         if (!result) {
             return res.render('login', {
                 error: 'Password is incorrect'
