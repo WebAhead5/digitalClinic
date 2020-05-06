@@ -21,7 +21,8 @@ exports.get = async (req,res,next)=> {
 
         res.render("dashboard",{
             dataArray: dataArr,
-            title: "dashboard"
+            title: "dashboard",
+            csrfToken: req.csrfToken()
         })
 
     }

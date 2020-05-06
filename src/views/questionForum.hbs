@@ -12,9 +12,9 @@
 
 
 
-<form id="question" method="post" action="/question/{{questionData.id}}">
-    <input type="text" name ='context' placeholder="submit an answer..." required>
-    <input type="submit" value="send">
+<form method="post" action="/question/{{questionData.id}}" class="addAnswerForm">
+    <input type="text" class="textField" name ='context' placeholder="submit an answer..." required>
+    <input type="submit" class="submitButton" value="send">
     <input type="hidden" name="_csrf" value="{{csrfToken}}">
 </form>
 

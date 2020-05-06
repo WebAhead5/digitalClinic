@@ -7,6 +7,7 @@ const router = require('./router');
 const cookieParser = require("cookie-parser")
 const helmet = require("helmet")
 
+
 //setup environment variables
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
@@ -18,7 +19,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(helmet());
-
 //setup the fav-icon using serve-favicon
 app.use(
   favicon(path.join(__dirname, '..', '..', 'public', 'res', 'favicon.ico'))
