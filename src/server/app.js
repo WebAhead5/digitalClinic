@@ -5,6 +5,7 @@ const handlebars = require('express-handlebars');
 const hbsHelpers = require('../views/viewHelpers');
 const router = require('./router');
 const cookieParser = require("cookie-parser")
+const helmet = require("helmet")
 
 //setup environment variables
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
@@ -12,13 +13,11 @@ if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 //create the server instance
 const app = express();
 
-//use express body-parser middleware
+//use middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-//user express cookie-parser
 app.use(cookieParser());
-
+app.use(helmet());
 
 //setup the fav-icon using serve-favicon
 app.use(

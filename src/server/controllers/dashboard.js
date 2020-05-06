@@ -35,15 +35,7 @@ exports.get = async (req,res,next)=> {
 exports.post = async (req,res)=> {
 
     const {context}=req.body;
-    console.log(res.locals.user)
-
-    const questiondata= await questionsM.add(res.locals.user.id,context)
-    
-    console.log(questiondata)
-
-    res.redirect(`/question/${questiondata.id}`)
-
-
-
+    const questiondata = await questionsM.add(res.locals.user.id,context)
+    res.reload()
 
 }
