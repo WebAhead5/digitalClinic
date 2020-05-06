@@ -30,7 +30,7 @@ exports.get = async (req,res,next)=>{
 
 
     //render
-    res.render("questionData",{
+    res.render("questionForum",{
         answers,
         questionData
     })

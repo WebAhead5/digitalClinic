@@ -3,11 +3,11 @@ const router = require('express').Router();
 
 const homeRoute = require("./controllers/homeRoute");
 const login = require('./controllers/login');
-const registerRoute = require('./controllers/registerRoute')
+const registerRoute = require('./controllers/register')
 const error = require('./controllers/error');
 const logout = require('./controllers/logout');
 const questions = require("./controllers/questions")
-const questionData = require("./controllers/questionData")
+const questionForum = require("./controllers/questionForum")
 const dashBoard = require("./controllers/dashboard")
 
 const validateLogin = require("./middleware/validateCookie")
@@ -34,8 +34,8 @@ router.route("/dashboard")
 
 router.route("/question/:question_id")
     .all(redirection.ifNotLoggedIn("/login"))
-    .get(questionData.get)
-    .post(questionData.post)
+    .get(questionForum.get)
+    .post(questionForum.post)
 
 router.get("/",homeRoute.get);
 router.get('/questions', redirection.ifNotLoggedIn("/login"),questions.get);
