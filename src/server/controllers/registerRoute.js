@@ -17,7 +17,6 @@ exports.get = (req, res) => {
 //{ isEmptyString, isLettersAndSpaces, validatePassword, passwordsMatch }
 exports.post = async (req, res, next) => {
     const { firstName, lastName, email, password, confirmpassword, doctorCertificate } = req.body;
-    // console.log(req.body)
 
     //check password straight
     let validation = validatePassword(password)
@@ -63,7 +62,6 @@ exports.post = async (req, res, next) => {
         // console.log(process.env.HASH_ITERATIONS);
         let hashedPass = await bcrypt.hash(password, saltRounds)
         
-        console.log('the hashedPass is :::::::', hashedPass);
         //add user to the database
         const userObj = await add(firstName, lastName, email, doctorCertificate, hashedPass)
 

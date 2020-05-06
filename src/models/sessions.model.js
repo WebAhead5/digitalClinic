@@ -6,14 +6,22 @@ exports.getAll = async () => {
 
     try {
 
-        let res = await dbConnection.query(`SELECT users.user_id,users.first_name, users.last_name, users.email,users.doctor_certificate 
-                                            FROM sessions inner join users on sessions.user_id = users.user_id; `);
+        let res = await dbConnection.query(`SELECT session_id,
+                                                users.user_id,
+                                                users.first_name,
+                                                users.last_name, 
+                                                users.email,
+                                                users.doctor_certificate,
+                                                (start_time+(duration_min*INTERVAL'1 minutes') <= now()) as has_expired
+                                            FROM sessions inner join users on sessions.user_id = users.user_id`);
+
         return res.rows;
 
-    } catch (e) {
-        throw new Error("An error occured while retrieving the session's data from the db")
     }
-}
+    catch (e) {
+        throw new Error("An error accrued while retrieving the session's data from the db")
+    }
+}s has_e
 
 
 //getBySessionId
@@ -24,16 +32,21 @@ exports.getBySessionId = async (sessionId) => {
 
 
     try {
-        let res = await dbConnection.query(`SELECT session_id,users.user_id,users.first_name, users.last_name, users.email,users.doctor_certificate 
+        let res = await dbConnection.query(`SELECT session_id,
+                                                users.user_id,
+                                                users.first_name,
+                                                users.last_name, 
+                                                users.email,
+                                                users.doctor_certificate,
+                                                (start_time+(duration_min*INTERVAL'1 minutes') <= now()) as has_expired
                                             FROM sessions inner join users on sessions.user_id = users.user_id where session_id = $1 ; `, [sessionId]);
 
-        return res.rows;
+        return res.rows.length? res.rows[0]: undefined;
 
     } catch (e) {
         throw new Error("An error occurred while retrieving the session from the db")
     }
 }
-
 
 
 exports.add = async (userId, duration) => {
@@ -58,7 +71,6 @@ exports.add = async (userId, duration) => {
         throw new Error("An error occured while adding the session to the db")
     }
 }
-
 
 
 //delete(SessionID)
@@ -95,19 +107,25 @@ exports.deleteAllExpired = async () => {
 
 
 
-//isExpired(SessionID)
-exports.isExpired = async (sessioniId) => {
 
-    if (!Number.isInteger(sessionId))
-    throw new Error("user id (isExpired - session.model) must be a number");
+exports.getAllExpired = async() => {
 
 
     try {
+        let res = await dbConnection.query(`select session_id,
+                                                      users.user_id,
+                                                      users.first_name,
+                                                      users.last_name,
+                                                      users.email,
+                                                      users.doctor_certificate
+                                                      FROM sessions 
+                                                      INNER JOIN users ON sessions.user_id = users.user_id 
+                                                      WHERE start_time+(duration_min * INTERVAL '1 minutes') <=now()`);
 
-        let res = await dbConnection.query("SELECT FROM sessions WHERE session_id=$1 & start_time+(duration_min*INTERVAL'1 minutes')<=now()", [sessioniId]);
-        return res.rows.length === 0;
+        return res.rows;
 
     } catch (e) {
         throw new Error("An error occured while deleting the session to the db")
     }
 }
+

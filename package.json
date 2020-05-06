@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "NODE_ENV=production node ./src/index.js",
-    "dev": "NODE_ENV=development nodemon ./src/index.js",
+    "dev": "NODE_ENV=production nodemon ./src/index.js",
     "test": "NODE_ENV=development tape ./testing/*.test.js | tap-diff",
     "test_server": "NODE_ENV=development tape ./testing/server.test.js | tap-diff",
     "test_db": "NODE_ENV=development tape ./testing/database.test.js | tap-diff",
@@ -24,8 +24,10 @@
   },
   "dependencies": {
     "bcrypt": "^4.0.1",
+    "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "express-handlebars": "^4.0.4",
+    "helmet": "^3.22.0",
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.0.3",
     "serve-favicon": "^2.5.0"

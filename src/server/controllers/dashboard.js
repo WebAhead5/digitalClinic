@@ -1,9 +1,6 @@
-
-
-
 const questionsM = require("../../models/questions.model");
 const answersM = require("../../models/answers.model");
-
+const validator = require("../../models/validator")
 
 
 exports.get = async (req,res,next)=> {
@@ -32,6 +29,16 @@ exports.get = async (req,res,next)=> {
     }
 
 
+}
 
-1
+
+exports.post = async (req,res)=> {
+
+    const {context}=req.body;
+    if (validator.isEmptyString(context))
+       return res.redirect("/dashboard");
+
+    await questionsM.add(res.locals.user.id,context)
+    res.redirect("/dashboard")
+
 }

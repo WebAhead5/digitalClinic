@@ -8,5 +8,5 @@ exports.client = (req, res) => {
 
 exports.server = (err, req, res, next) => {
   console.log(err.message);
-  res.status(500).send('500 - server error');
+  res.status(502).send('502 - server error');
 };
