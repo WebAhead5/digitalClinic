@@ -7,6 +7,7 @@ const registerRoute = require('./controllers/registerRoute')
 const error = require('./controllers/error');
 const logout = require('./controllers/logout');
 const questions = require("./controllers/questions")
+const questionData = require("./controllers/questionData")
 const dashBoard = require("./controllers/dashboard")
 
 const validateLogin = require("./middleware/validateCookie")
@@ -30,6 +31,11 @@ router.route("/dashboard")
     .all(redirection.ifNotLoggedIn("/login"))
     .get(dashBoard.get)
     .post(dashBoard.post)
+
+router.route("/question/:question_id")
+    .all(redirection.ifNotLoggedIn("/login"))
+    .get(questionData.get)
+    .post(questionData.post)
 
 router.get("/",homeRoute.get);
 router.get('/questions', redirection.ifNotLoggedIn("/login"),questions.get);

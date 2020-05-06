@@ -11,8 +11,17 @@ async function getAll() {
 async function getFor(question_id) {
 
     let res = await dbConnection.query(
-      'SELECT * FROM answers WHERE question_id = $1',
-      [question_id]
+        `SELECT id,
+               post_time, 
+              (EXTRACT(EPOCH FROM post_time) * 1000) as post_time_milliseconds,
+              answers.user_id,
+              users.first_name as asker_first_name,
+              users.last_name as asker_last_name,
+              users.doctor_certificate
+       FROM answers
+       inner join users on answers.user_id = users.user_id 
+       WHERE question_id = $1`,
+        [question_id]
     );
     return res.rows;
 

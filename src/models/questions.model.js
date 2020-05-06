@@ -9,7 +9,8 @@ async function getAll() {
                                             (EXTRACT(EPOCH FROM post_time) * 1000) as post_time_milliseconds,
                                             asker_id,
                                             users.first_name as asker_first_name,
-                                            users.last_name as asker_last_name                      
+                                            users.last_name as asker_last_name,
+                                            users.doctor_certificate
                                             FROM questions
                                             inner join users on asker_id = users.user_id`);
   return res.rows;
@@ -25,7 +26,8 @@ async function getAskedBy(user_id) {
               (EXTRACT(EPOCH FROM post_time) * 1000) as post_time_milliseconds,
               asker_id,
               users.first_name as asker_first_name,
-              users.last_name as asker_last_name                      
+              users.last_name as asker_last_name,
+              users.doctor_certificate
        FROM questions
        inner join users on asker_id = users.user_id 
        WHERE asker_id = $1`,
@@ -34,6 +36,27 @@ async function getAskedBy(user_id) {
     return res.rows;
 
 }
+
+async function getById(question_id) {
+
+    let res = await dbConnection.query(
+        `SELECT id,
+              question_context,
+              post_time, 
+              (EXTRACT(EPOCH FROM post_time) * 1000) as post_time_milliseconds,
+              asker_id,
+              users.first_name as asker_first_name,
+              users.last_name as asker_last_name,
+              users.doctor_certificate
+       FROM questions
+       inner join users on asker_id = users.user_id 
+       WHERE id = $1`,
+        [question_id]
+    );
+    return res.rows.length? res.rows[0]: undefined;
+
+}
+
 
 async function add(asker_id, context) {
   if (validator.isEmptyString(context))
@@ -55,4 +78,5 @@ module.exports = {
   add,
   getAll,
   getAskedBy,
+    getById
 };
