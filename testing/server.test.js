@@ -12,19 +12,3 @@ tape.test("check if tape works for server tests",t=>{
     t.end();
 })
 
-
-_tape.test("test GET /questions route",t=>{
-
-    supertest(app)
-        .get("/questions")
-        .expect(200)
-        .end((err, res)=>{
-
-            t.error(err, "no errors");
-            t.ok(Array.isArray(res.body), "returns an array");
-            t.end()
-
-
-        })
-
-})
