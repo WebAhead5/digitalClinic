@@ -8,19 +8,20 @@
 
 <hr>
 
-<form method='post' action='/register' class="registerForm">
+<form method='post' action='/register' id="regForm" class="registerForm">
 
-    <input type='text' class="textField" name='firstName' placeholder='First Name' required />
+    <input type='text'  id="firstName" class="textField" name='firstName' placeholder='First Name' required />
     <input type='text' class="textField" name='lastName' placeholder='Last Name' required />
     <input type='email' class="textField" name='email' placeholder='Email' />
-    <input type='password' class="textField" name='password' placeholder='Password' required />
-    <input type='password' class="textField" name='confirmpassword' placeholder='Confirm Password' required />
+    <input type='password' class="textField password" name='password' placeholder='Password' required />
+    <input type='password' class="textField confirmPassword" name='confirmpassword' placeholder='Confirm Password' required />
     <input type='number' class="textField" name='doctorCertificate' id='doctorCertificate' placeholder='Doctor Certificate' />
     <input id="submit"  class="submitButton" type="submit" value="Submit">
     <input type="hidden" name="_csrf" value="{{csrfToken}}">
 </form>
-<script src="/scripts/dom/register.dom.js" type="javascript"></script>
-{{#if error}}
-<h1 class="regErr">{{error}}</h1>
+<script src="scripts/dom/register.dom.js" type="application/javascript"></script>
+{{#if error}}   
+<h1 class="regErr" id="regErr">{{error}}</h1>
+<h1 class="regErr1" id="regErr1"></h1>
 {{/if}}
 
