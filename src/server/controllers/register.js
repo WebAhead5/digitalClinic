@@ -86,3 +86,4 @@ exports.post = async (req, res, next) => {
 exports.hiddenElement = () => {
     document.getElementById('doctor').addEventListener('click', helpers.toggler());
 }
+
