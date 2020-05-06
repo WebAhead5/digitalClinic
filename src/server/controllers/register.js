@@ -9,7 +9,8 @@ const saltRounds = parseInt(process.env.HASH_ITERATIONS);
 
 exports.get = (req, res) => {
     res.render("register", {
-        title: "register"
+        title: "register",
+        csrfToken: req.csrfToken()
     });
 };
 
@@ -23,7 +24,8 @@ exports.post = async (req, res, next) => {
     if (!validation.isValid) {
         return res.render('register', {
             title: "register",
-            error: validation.errorMessage
+            error: validation.errorMessage,
+            csrfToken: req.csrfToken()
         })
     }
 
@@ -32,7 +34,8 @@ exports.post = async (req, res, next) => {
     if (!validation.isValid) {
         return res.render('register', {
             title: "register",
-            error: validation.errorMessage
+            error: validation.errorMessage,
+            csrfToken: req.csrfToken()
         })
     }
 
@@ -45,14 +48,16 @@ exports.post = async (req, res, next) => {
     } catch (e) {
         return res.render('register', {
             title: "register",
-            error: e.message
+            error: e.message,
+            csrfToken: req.csrfToken()
         })
     }
 
     if (userData)
         return res.render('register', {
             title: "register",
-            error: "Email is already in use!"
+            error: "Email is already in use!",
+            csrfToken: req.csrfToken()
         })
 
 
@@ -81,3 +86,4 @@ exports.post = async (req, res, next) => {
 exports.hiddenElement = () => {
     document.getElementById('doctor').addEventListener('click', helpers.toggler());
 }
+

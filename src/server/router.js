@@ -14,6 +14,7 @@ const validateLogin = require("./middleware/validateCookie")
 const createSession = require("./middleware/createSession")
 const redirection = require("./middleware/loggedInRedirection")
 
+const csrfProtection  = require("csurf")({ cookie: true })
 
 router.use(validateLogin);
 
@@ -23,17 +24,17 @@ router.route('/login')
     .post(login.post,createSession);
 
 router.route('/register')
-    .all(redirection.ifLoggedIn("/dashboard"))
+    .all(redirection.ifLoggedIn("/dashboard"),csrfProtection)
     .get(registerRoute.get)
     .post(registerRoute.post,createSession)
 
 router.route("/dashboard")
-    .all(redirection.ifNotLoggedIn("/login"))
+    .all(redirection.ifNotLoggedIn("/login"),csrfProtection)
     .get(dashBoard.get)
     .post(dashBoard.post)
 
 router.route("/question/:question_id")
-    .all(redirection.ifNotLoggedIn("/login"))
+    .all(redirection.ifNotLoggedIn("/login"),csrfProtection)
     .get(questionForum.get)
     .post(questionForum.post)
 

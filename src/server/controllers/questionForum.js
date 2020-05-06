@@ -32,7 +32,9 @@ exports.get = async (req,res,next)=>{
     //render
     res.render("questionForum",{
         answers,
-        questionData
+        questionData,
+        title: "forum",
+        csrfToken: req.csrfToken()
     })
 
 }

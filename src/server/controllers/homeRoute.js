@@ -8,7 +8,6 @@ exports.get= (req, res, next) => {
 
 exports.get = (req, res) => {
   res.render('home', {
-    title: 'pokemon',
-    body: 'rendered!!!',
+    body: 'rendered!!!'
   });
 };
