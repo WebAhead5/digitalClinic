@@ -7,6 +7,7 @@ exports.getAll = async () => {
     try {
 
         let res = await dbConnection.query(`SELECT session_id,
+                                                logged_out,
                                                 users.user_id,
                                                 users.first_name,
                                                 users.last_name, 
@@ -30,6 +31,7 @@ exports.getBySessionId = async (sessionId) => {
 
     try {
         let res = await dbConnection.query(`SELECT session_id,
+                                                logged_out,
                                                 users.user_id,
                                                 users.first_name,
                                                 users.last_name, 
@@ -83,7 +85,7 @@ exports.delete = async (sessionId) => {
 exports.deleteAllExpired = async() => {
 
     try {
-        let res = await dbConnection.query("DELETE FROM sessions WHERE start_time+(duration_min*INTERVAL'1 minutes')<=now()");
+        let res = await dbConnection.query("DELETE FROM sessions WHERE (start_time+(duration_min*INTERVAL'1 minutes')<=now()) OR logged_out=TRUE");
         return res.rowCount;
     } catch (e) {
         throw new Error("An error occured while deleting the session to the db")
@@ -103,12 +105,12 @@ exports.getAllExpired = async() => {
                                                       users.doctor_certificate
                                                       FROM sessions 
                                                       INNER JOIN users ON sessions.user_id = users.user_id 
-                                                      WHERE start_time+(duration_min * INTERVAL '1 minutes') <=now()`);
+                                                      WHERE (start_time+(duration_min * INTERVAL '1 minutes') <=now()) OR logged_out = TRUE`);
 
         return res.rows;
 
     } catch (e) {
-        throw new Error("An error occured while deleting the session to the db")
+        throw new Error("An error occurred while deleting the session to the db")
     }
 }
 
