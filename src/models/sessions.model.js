@@ -12,7 +12,7 @@ exports.getAll = async () => {
                                                 users.last_name, 
                                                 users.email,
                                                 users.doctor_certificate,
-                                                (start_time+(duration_min*INTERVAL'1 minutes') <= now()) as has_expired
+                                                (start_time+(duration_min*INTERVAL'1 minutes') <= now()) or logged_out as has_expired
                                             FROM sessions inner join users on sessions.user_id = users.user_id`);
 
         return res.rows;
@@ -35,7 +35,7 @@ exports.getBySessionId = async (sessionId) => {
                                                 users.last_name, 
                                                 users.email,
                                                 users.doctor_certificate,
-                                                (start_time+(duration_min*INTERVAL'1 minutes') <= now()) as has_expired
+                                                (start_time+(duration_min*INTERVAL'1 minutes') <= now()) OR logged_out as has_expired
                                             FROM sessions inner join users on sessions.user_id = users.user_id where session_id = $1 ; `, [sessionId]);
 
         return res.rows.length? res.rows[0]: undefined;
@@ -83,7 +83,7 @@ exports.delete = async (sessionId) => {
 exports.deleteAllExpired = async() => {
 
     try {
-        let res = await dbConnection.query("DELETE FROM sessions WHERE start_time+(duration_min*INTERVAL'1 minutes')<=now()");
+        let res = await dbConnection.query("DELETE FROM sessions WHERE (start_time+(duration_min*INTERVAL'1 minutes')<=now()) OR logged_out");
         return res.rowCount;
     } catch (e) {
         throw new Error("An error occured while deleting the session to the db")
@@ -96,6 +96,7 @@ exports.getAllExpired = async() => {
 
     try {
         let res = await dbConnection.query(`select session_id,
+                                                      logged_out,
                                                       users.user_id,
                                                       users.first_name,
                                                       users.last_name,
@@ -103,9 +104,24 @@ exports.getAllExpired = async() => {
                                                       users.doctor_certificate
                                                       FROM sessions 
                                                       INNER JOIN users ON sessions.user_id = users.user_id 
-                                                      WHERE start_time+(duration_min * INTERVAL '1 minutes') <=now()`);
+                                                      WHERE (start_time+(duration_min * INTERVAL '1 minutes') <=now()) OR logged_out`);
 
         return res.rows;
+
+    } catch (e) {
+        throw new Error("An error occurred while deleting the session to the db")
+    }
+}
+
+exports.endSession = async(session_id) => {
+
+    if(Number.isNaN(session_id))
+        throw new Error("session_id must be a number");
+
+    try {
+
+        let res = await dbConnection.query('UPDATE sessions SET logged_out=TRUE WHERE session_id = $1', [session_id]);
+        return res.rowCount;
 
     } catch (e) {
         throw new Error("An error occured while deleting the session to the db")

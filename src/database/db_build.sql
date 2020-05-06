@@ -46,7 +46,8 @@ CREATE TABLE sessions(
                        user_id INTEGER NOT NULL,
                        -- FOREIGN KEY (user_id) REFERENCES users (user_id),
                        start_time timestamp with time zone DEFAULT NOW(),
-                       duration_min INTEGER
+                       duration_min INTEGER,
+                       logged_out boolean default false
 );
 
 
