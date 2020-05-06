@@ -24,10 +24,10 @@ async function getFor(question_id) {
 async function add(user_id, question_id, context) {
 
 
-  if (typeof user_id !== 'number')
+  if (!Number.isInteger(user_id))
     throw new Error("user id must be a number");
 
-  if (typeof question_id !== 'number')
+  if (!Number.isInteger(question_id))
     throw new Error("question id must be a number");
 
   if (!context)

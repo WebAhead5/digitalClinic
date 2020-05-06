@@ -19,7 +19,7 @@ exports.getAll = async () => {
 //getBySessionId
 exports.getBySessionId = async (sessionId) => {
 
-    if (typeof sessionId !== 'number')
+    if (!Number.isInteger(sessionId))
         throw new Error("user id (getBySessionId) must be a number");
 
 
@@ -38,12 +38,12 @@ exports.getBySessionId = async (sessionId) => {
 
 exports.add = async (userId, duration) => {
 
-        // if (typeof userId !== 'number')
-        //     throw new Error("user id (addSession model) must be a number");
+        if (!Number.isInteger(userId))
+            throw new Error("user id (addSession model) must be a number");
 
 
-        // if (typeof duration !== 'number')
-        //     throw new Error("duration (addSession model) must be a number");
+        if (!Number.isInteger(duration))
+            throw new Error("duration (addSession model) must be a number");
 
 
     try {
@@ -64,7 +64,7 @@ exports.add = async (userId, duration) => {
 //delete(SessionID)
 exports.delete = async (sessionId) => {
 
-    if (typeof sessionId !== 'number')
+    if (!Number.isInteger(sessionId))
         throw new Error("user id (delete) must be a number");
 
 
@@ -98,7 +98,7 @@ exports.deleteAllExpired = async () => {
 //isExpired(SessionID)
 exports.isExpired = async (sessioniId) => {
 
-    if (typeof sessionId !== 'number')
+    if (!Number.isInteger(sessionId))
     throw new Error("user id (isExpired - session.model) must be a number");
 
 

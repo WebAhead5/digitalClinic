@@ -78,7 +78,7 @@ exports.getUserByEmail = async (email) => {
 exports.getUserById = async (userId) => {
 
 
-    if (typeof userId !== 'number')
+    if (!Number.isInteger(userId))
         throw new Error("user id (getUserById) must be a number");
 
 

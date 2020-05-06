@@ -30,11 +30,14 @@ function getPostTime(timeInMilliseconds)
 }
 
 
+function toggler() {
+    console.log("toggler")
+    const drCertificate = document.getElementById('doctorCertificate');
+    drCertificate.classList.toggle('visible')
+}
 
 
 
 
 
-
-
-module.exports= {getPostTime}
+module.exports= {getPostTime, toggler}

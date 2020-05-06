@@ -1,9 +1,10 @@
 const { isEmptyString, isLettersAndSpaces, validatePassword, passwordsMatch } = require('../../models/validator');
-
 const { getUserByEmail, add } = require('../../models/users.model')
 
+const helpers = require('../../views/viewHelpers')
+
 const bcrypt = require('bcrypt')
-const saltRounds = process.env.HASH_ITERATIONS || 10;
+const saltRounds = process.env.HASH_ITERATIONS;
 
 
 exports.get = (req, res) => {
@@ -57,27 +58,28 @@ exports.post = async (req, res, next) => {
 
 
     try {
-
-
         //hashing the pass
-        let hashedPass = bcrypt.hashSync(password, saltRounds)
-        // console.log('the hashedPass is :::::::', hashedPass);
-
-
+        // let hashedPass = bcrypt.hashSync(password, saltRounds)
+        // console.log(process.env.HASH_ITERATIONS);
+        let hashedPass = await bcrypt.hash(password, saltRounds)
+        
+        console.log('the hashedPass is :::::::', hashedPass);
         //add user to the database
         const userObj = await add(firstName, lastName, email, doctorCertificate, hashedPass)
+
         //store user id in a locals inorder to create a session for him
         res.locals.loginUserID = userObj.user_id;
-
 
         //go to createSession middleware
         next()
 
     } catch (error) {
-
-        // console.log(error.message)
+        console.log(error.message)
         next(new Error('the error in the register post'))
     }
 }
 
 
+exports.hiddenElement = () => {
+    document.getElementById('doctor').addEventListener('click', helpers.toggler());
+}

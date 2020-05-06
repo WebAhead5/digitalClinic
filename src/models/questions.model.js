@@ -18,7 +18,7 @@ async function getAll() {
 
 async function getAskedBy(user_id) {
 
-  if (typeof user_id !== 'number')
+  if (!Number.isInteger(user_id))
     throw new Error("user id (getAskedBy)must be a number");
 
 
@@ -41,7 +41,7 @@ async function getAskedBy(user_id) {
 
 async function add(asker_id, context) {
 
-  if (typeof asker_id !== 'number')
+  if (!Number.isInteger(asker_id))
   throw new Error("user id (addFunc) must be a number");
  
   if (!context)
