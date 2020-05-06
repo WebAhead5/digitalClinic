@@ -17,3 +17,34 @@ body{
     border: 1px black solid;
 }
 
+
+.selected {
+
+    color: red;
+    border-bottom: 5px solid black;
+
+}
+
+.headerbar {
+    
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.headerbar a , .headerbar a:visited , .headerbar a:active , .headerbar a:hover , .headerbar a:focus {
+
+    text-decoration: none;
+    color:inherit;
+    outline: 0;
+
+
+}
+
+
+.smallicon {
+    height: 40px;
+    width: 40px;
+}
+

@@ -1,26 +1,39 @@
-<h1>Register</h1>
+<h1 id='chooseAccount'>Choose account type</h1>
+
+<link href="/styles/register.css" rel="stylesheet">
+
+
+<div class="registerContainer">
+
+    <div class="doctorpatientfield">
+        <div class="column">
+            <img id="doctorimg" src="/res/icon-doctor.png"></img>
+            <span class="caption">Doctor</span>
+        </div>
+        <div class="column">
+            <img id="paitentimg" src="/res/icon-patient.png"></img>
+            <span class="caption">Paitent</span>
+        </div>
+
+    </div> 
 
 
 
+    <form method='post' action='/register' class="registerForm">
 
-<a href='/register' id="doctor" onclick="toggler()">Doctor</a>
-<a href='/register' id="patient">Patient</a>
+        <input type='text' class="textField" name='firstName' placeholder='First Name' required />
+        <input type='text' class="textField" name='lastName' placeholder='Last Name' required />
+        <input type='email' class="textField" name='email' placeholder='Email' />
+        <input type='password' class="textField" name='password' placeholder='Password' required />
+        <input type='password' class="textField" name='confirmpassword' placeholder='Confirm Password' required />
+        <input type='number' class="textField" name='doctorCertificate' id='doctorCertificate'
+            placeholder='Doctor Certificate' />
+        <input id="submit" class="submitButton" type="submit" value="Submit">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+    </form>
 
-<hr>
+    {{#if error}}
+    <h1 style="color: red">{{error}}</h1>
+    {{/if}}
 
-<form method='post' action='/register' class="registerForm">
-
-    <input type='text' class="textField" name='firstName' placeholder='First Name' required />
-    <input type='text' class="textField" name='lastName' placeholder='Last Name' required />
-    <input type='email' class="textField" name='email' placeholder='Email' />
-    <input type='password' class="textField" name='password' placeholder='Password' required />
-    <input type='password' class="textField" name='confirmpassword' placeholder='Confirm Password' required />
-    <input type='number' class="textField" name='doctorCertificate' id='doctorCertificate' placeholder='Doctor Certificate' />
-    <input id="submit"  class="submitButton" type="submit" value="Submit">
-    <input type="hidden" name="_csrf" value="{{csrfToken}}">
-</form>
-
-{{#if error}}
-<h1 class="regErr">{{error}}</h1>
-{{/if}}
-
+</div>

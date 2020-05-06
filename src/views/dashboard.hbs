@@ -1,5 +1,8 @@
+<link href="/styles/dashboard.css" rel="stylesheet">
+<section class="dashboardContainer">
+<h1 class="dashboardContainer__title"> Welcome back,{{#if user.doctorCer}} Dr.{{/if}} {{user.firstName}} {{user.lastName}}</h1>
 <form class="addQuestionForm" method="post" action="/dashboard">
-    <input type="text" class="textField" name ='context' alt="ask a question..." required>
+    <input type="text" class="textField" name ='context' placeholder="ask a question..." required>
     <input type="submit" class="submitButton" value="ask">
     <input type="hidden" name="_csrf" value="{{csrfToken}}">
 </form>
@@ -8,3 +11,7 @@
 {{#each dataArray}}
    {{> questionEntry data=this.questionData answersCount=this.answersCount}}
 {{/each}}
+
+
+
+</section>

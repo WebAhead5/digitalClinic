@@ -9,7 +9,6 @@ const logout = require('./controllers/logout');
 const questions = require("./controllers/questions")
 const questionForum = require("./controllers/questionForum")
 const dashBoard = require("./controllers/dashboard")
-
 const validateLogin = require("./middleware/validateCookie")
 const createSession = require("./middleware/createSession")
 const redirection = require("./middleware/loggedInRedirection")
