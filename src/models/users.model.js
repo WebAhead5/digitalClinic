@@ -63,7 +63,7 @@ exports.getUserByEmail = async (email) => {
         // console.log('the res',res)
 
         if(res.rows.length === 0)
-        return;
+            return;
         return res.rows[0];
 
     } catch (e) {
@@ -93,6 +93,21 @@ exports.getUserById = async (userId) => {
 
 }
 
+
+
+exports.updatePassword =async (user_id, newPassword)=>{
+
+    if (!Number.isInteger(user_id))
+        throw new Error("user id (getUserById) must be a number");
+
+    try {
+    let res = await dbConnection.query('UPDATE users SET password=$1 WHERE user_id = $2', [newPassword,user_id]);
+    return res.rowCount;
+    } catch (e) {
+    throw new Error("An error occured while retrieving the users from the db")
+}
+
+}
 
 
 //add(firstName, lastName, email, certificate)

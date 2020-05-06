@@ -1,3 +1,6 @@
+
+if (process.env.NODE_ENV !== 'production') require('dotenv').config();
+
 const path = require('path');
 const express = require('express');
 const favicon = require('serve-favicon');
@@ -8,8 +11,6 @@ const cookieParser = require("cookie-parser")
 const helmet = require("helmet")
 
 
-//setup environment variables
-if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
 //create the server instance
 const app = express();

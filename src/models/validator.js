@@ -18,6 +18,7 @@ function validatePassword(str) {
   isValid = !regex_spaces.test(str);
   if (!isValid) {
     errorMessage = 'No spaces are allowed in the password';
+    isValid = false;
     return { isValid, errorMessage, strength };
   }
 

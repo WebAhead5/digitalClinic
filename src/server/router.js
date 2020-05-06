@@ -9,6 +9,8 @@ const logout = require('./controllers/logout');
 const questions = require("./controllers/questions")
 const questionForum = require("./controllers/questionForum")
 const dashBoard = require("./controllers/dashboard")
+const forgotPassword = require("./controllers/forgotPassword")
+const resetPassword = require("./controllers/resetPassword")
 
 const validateLogin = require("./middleware/validateCookie")
 const createSession = require("./middleware/createSession")
@@ -27,6 +29,16 @@ router.route('/register')
     .all(redirection.ifLoggedIn("/dashboard"),csrfProtection)
     .get(registerRoute.get)
     .post(registerRoute.post,createSession)
+
+router.route(['/forg[eo]t',"/forgotPassword"])
+    .all(redirection.ifLoggedIn("/dashboard"))
+    .get(forgotPassword.get)
+    .post(forgotPassword.post);
+
+router.route(['/reset',"/resetPassword"])
+    .all(redirection.ifLoggedIn("/dashboard"))
+    .get(resetPassword.get)
+    .post(resetPassword.post);
 
 router.route("/dashboard")
     .all(redirection.ifNotLoggedIn("/login"),csrfProtection)
