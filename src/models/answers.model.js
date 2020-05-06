@@ -3,9 +3,21 @@ const validator = require('./validator');
 
 async function getAll() {
 
-    let res = await dbConnection.query('SELECT * FROM answers');
+    let res = await dbConnection.query(
+        `SELECT id,
+               post_time, 
+              answer_context as context,
+              (EXTRACT(EPOCH FROM post_time) * 1000) as post_time_milliseconds,
+              answers.user_id,
+              users.first_name,
+              users.last_name ,
+              users.doctor_certificate
+       FROM answers
+       inner join users on answers.user_id = users.user_id`);
+
     return res.rows;
-  };
+
+}
 
 
 async function getFor(question_id) {
@@ -13,10 +25,11 @@ async function getFor(question_id) {
     let res = await dbConnection.query(
         `SELECT id,
                post_time, 
+              answer_context as context,
               (EXTRACT(EPOCH FROM post_time) * 1000) as post_time_milliseconds,
               answers.user_id,
-              users.first_name as asker_first_name,
-              users.last_name as asker_last_name,
+              users.first_name,
+              users.last_name ,
               users.doctor_certificate
        FROM answers
        inner join users on answers.user_id = users.user_id 

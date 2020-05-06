@@ -2,25 +2,12 @@
 
 
 <form id="question" method="post" action="/dashboard">
-    <input type="text" name ='context' alt="ask a question" required>
+    <input type="text" name ='context' alt="ask a question..." required>
     <input type="submit" value="ask">
     <input type="hidden" name="_csrf" value="{{csrfToken}}">
 </form>
 
 
-
-    {{#each dataArray}}
-        <main onclick="location.href = '/question/{{questionObj.id}}'">
-            <div >
-                <img src="">
-                <div>
-                    <span id="askerName">{{questionObj.asker_first_name}} {{questionObj.asker_last_name}}</span>
-                    <span id="askedQuestion">{{questionObj.question_context}}</span>
-                </div>
-            </div>
-            <div >
-                <span id="">{{answersCount}} answers... </span>
-                <span id="">{{getPostTime questionObj.post_time_milliseconds }} </span>
-            </div>
-        </main>
-    {{/each}}
+{{#each dataArray}}
+   {{> questionEntry data=this.questionData answersCount=this.answersCount}}
+{{/each}}

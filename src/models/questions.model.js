@@ -4,12 +4,12 @@ const validator = require("./validator");
 async function getAll() {
 
   let res = await dbConnection.query(`SELECT id,
-                                            question_context,
+                                            question_context as context,
                                             post_time, 
                                             (EXTRACT(EPOCH FROM post_time) * 1000) as post_time_milliseconds,
                                             asker_id,
-                                            users.first_name as asker_first_name,
-                                            users.last_name as asker_last_name,
+                                            users.first_name,
+                                            users.last_name ,
                                             users.doctor_certificate
                                             FROM questions
                                             inner join users on asker_id = users.user_id`);
@@ -21,12 +21,12 @@ async function getAskedBy(user_id) {
 
     let res = await dbConnection.query(
       `SELECT id,
-              question_context,
+              question_context as context,
               post_time, 
               (EXTRACT(EPOCH FROM post_time) * 1000) as post_time_milliseconds,
               asker_id,
-              users.first_name as asker_first_name,
-              users.last_name as asker_last_name,
+              users.first_name,
+              users.last_name,
               users.doctor_certificate
        FROM questions
        inner join users on asker_id = users.user_id 
@@ -41,12 +41,12 @@ async function getById(question_id) {
 
     let res = await dbConnection.query(
         `SELECT id,
-              question_context,
+              question_context as context,
               post_time, 
               (EXTRACT(EPOCH FROM post_time) * 1000) as post_time_milliseconds,
               asker_id,
-              users.first_name as asker_first_name,
-              users.last_name as asker_last_name,
+              users.first_name,
+              users.last_name,
               users.doctor_certificate
        FROM questions
        inner join users on asker_id = users.user_id 

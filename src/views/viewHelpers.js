@@ -30,11 +30,13 @@ function getPostTime(timeInMilliseconds)
 }
 
 
+function isNumber(val){
+ return !isNaN(val)
+}
 
 
 
 
 
 
-
-module.exports= {getPostTime}
+module.exports= {getPostTime,isNumber}
