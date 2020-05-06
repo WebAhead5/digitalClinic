@@ -30,14 +30,21 @@ function getPostTime(timeInMilliseconds)
 }
 
 
+
+function isNumber(val){
+ return !isNaN(val)
+
+}
+
+
 function toggler() {
     console.log("toggler")
     const drCertificate = document.getElementById('doctorCertificate');
     drCertificate.classList.toggle('visible')
+
 }
 
 
 
+module.exports= {getPostTime, toggler, isNumber}
 
-
-module.exports= {getPostTime, toggler}

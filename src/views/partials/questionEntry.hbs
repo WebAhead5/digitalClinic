@@ -1,0 +1,20 @@
+
+
+<main {{#if (isNumber answersCount)}}onclick="location.href = '/question/{{data.id}}'" {{/if}}>
+
+    <div >
+        <img src="">
+        <div>
+            <span id="askerName">{{data.first_name}} {{data.last_name}}</span>
+            <span id="askedQuestion">{{data.context}}</span>
+        </div>
+    </div>
+    <div >
+
+        {{#if (isNumber answersCount) }}
+            <span id="">{{answersCount}} answers... </span>
+        {{/if}}
+
+        <span id="">{{getPostTime data.post_time_milliseconds }} </span>
+    </div>
+</main>

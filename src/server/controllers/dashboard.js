@@ -11,7 +11,7 @@ exports.get = async (req,res,next)=> {
         for(let i = 0; i<questions.length; i++){
 
             let temp = {
-                questionObj: questions[i],
+                questionData: questions[i],
                 answers:  await answersM.getFor(questions[i].id),
             }
             temp.answersCount = temp.answers.length;
