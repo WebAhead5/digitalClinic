@@ -3,9 +3,9 @@ const jwt = require("jsonwebtoken")
 
 async function createSession  (req,res,next){
 
-    //--------------------------------------------------------------------------------------------------
-    //send user to 502 if environment variables are not set
-    let sessionDuration = process.env.SESSION_DURATION_MINS;
+
+    let sessionDuration = parseInt(process.env.SESSION_DURATION_MINS);
+
     let jwtSecret = process.env.JWT_SECRET;
 
     if(!sessionDuration)

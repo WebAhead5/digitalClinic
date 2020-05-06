@@ -21,11 +21,14 @@ exports.getAll = async () => {
     catch (e) {
         throw new Error("An error accrued while retrieving the session's data from the db")
     }
-}
+}s has_e
 
 
 //getBySessionId
 exports.getBySessionId = async (sessionId) => {
+
+    if (!Number.isInteger(sessionId))
+        throw new Error("user id (getBySessionId) must be a number");
 
 
     try {
@@ -48,13 +51,21 @@ exports.getBySessionId = async (sessionId) => {
 
 exports.add = async (userId, duration) => {
 
+        if (!Number.isInteger(userId))
+            throw new Error("user id (addSession model) must be a number");
+
+
+        if (!Number.isInteger(duration))
+            throw new Error("duration (addSession model) must be a number");
+
+
     try {
 
         await dbConnection.query('INSERT INTO sessions (user_id,duration_min) VALUES ($1,$2)', [userId, duration]);
         let res = await dbConnection.query(`SELECT session_id,users.user_id,users.first_name, users.last_name, users.email,users.doctor_certificate 
                                             FROM sessions inner join users on sessions.user_id = users.user_id where sessions.user_id = $1 ; `, [userId]);
 
-        return res.rows[res.rows.length -1];
+        return res.rows[res.rows.length - 1];
 
     } catch (e) {
         throw new Error("An error occured while adding the session to the db")
@@ -65,10 +76,14 @@ exports.add = async (userId, duration) => {
 //delete(SessionID)
 exports.delete = async (sessionId) => {
 
+    if (!Number.isInteger(sessionId))
+        throw new Error("user id (delete) must be a number");
+
+
 
     try {
 
-       let res = await dbConnection.query('DELETE FROM sessions WHERE session_id = $1', [sessionId]);
+        let res = await dbConnection.query('DELETE FROM sessions WHERE session_id = $1', [sessionId]);
         return res.rowCount;
 
     } catch (e) {
@@ -80,7 +95,7 @@ exports.delete = async (sessionId) => {
 
 
 //deleteAllExpired()
-exports.deleteAllExpired = async() => {
+exports.deleteAllExpired = async () => {
 
     try {
         let res = await dbConnection.query("DELETE FROM sessions WHERE start_time+(duration_min*INTERVAL'1 minutes')<=now()");
@@ -92,7 +107,9 @@ exports.deleteAllExpired = async() => {
 
 
 
+
 exports.getAllExpired = async() => {
+
 
     try {
         let res = await dbConnection.query(`select session_id,

@@ -61,6 +61,7 @@ exports.getUserByEmail = async (email) => {
     try {
         let res = await dbConnection.query('SELECT * FROM users WHERE email = $1', [email]);
         // console.log('the res',res)
+
         if(res.rows.length === 0)
         return;
         return res.rows[0];
@@ -76,6 +77,12 @@ exports.getUserByEmail = async (email) => {
 //getUserById
 
 exports.getUserById = async (userId) => {
+
+
+    if (!Number.isInteger(userId))
+        throw new Error("user id (getUserById) must be a number");
+
+
 
     try {
         let res = await dbConnection.query('SELECT * FROM users WHERE user_id = $1', [userId]);
@@ -102,10 +109,10 @@ exports.add = async (firstName, lastName, email, doctorCertificate, password) =>
 
 
     // if (!validator.isEmptyString(firstName) || !validator.isEmptyString(lastName))
-    //     throw new Error("Name cant be empty");
+    //     throw new Error("user id id cant be empty");
 
     try {
-        console.log('this is the try', firstName, lastName, email,doctorCertificate);
+        // console.log('this is the try', firstName, lastName, email,doctorCertificate);
         await dbConnection.query(`INSERT INTO users
         (first_name, last_name, email, doctor_certificate, password)
         VALUES ($1,$2,$3,$4, $5)`, [firstName, lastName, email, doctorCertificate, password]);
