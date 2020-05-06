@@ -26,7 +26,12 @@ async function createSession  (req,res,next){
     let sessionID = session.session_id;
 
     //set the session id
-    res.cookie ("user_token" ,jwt.sign({session_id:sessionID},jwtSecret))
+    res.cookie ("user_token" ,jwt.sign({session_id:sessionID},jwtSecret), {
+        maxAge: parseInt(process.env.SESSION_DURATION_MINS) * 60 * 1000,
+        secure: req.hostname !== 'localhost',
+        httpOnly: true,
+        ephemeral: true
+    })
 
     //redirect the user to /dashboard after a successful log in
     return  res.redirect("/dashboard")
