@@ -1,10 +1,13 @@
 
+const sessionM = require("../../models/sessions.model")
+
+exports.get =async (req, res) => {
 
 
-exports.get = (req, res) => {
-
-  // if (res.locals.user)
-  //   session.delete(res.locals.user.sessionID);
+  try {
+    await sessionM.endSession(res.locals.user.sessionID);
+  } catch (e) {
+  }
 
   res.clearCookie('user_token');
   res.redirect('/');

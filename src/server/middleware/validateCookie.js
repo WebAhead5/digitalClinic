@@ -58,7 +58,6 @@ async function validateCredentials(req,res,next) {
         //if the session has expired, clear the cookies and continue
         if(sessionData.has_expired){
             res.clearCookie('user_token');
-            //sessionModel.delete(session_id)
             return next();
         }
 
