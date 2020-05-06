@@ -36,6 +36,6 @@ exports.post = async (req,res)=> {
 
     const {context}=req.body;
     const questiondata = await questionsM.add(res.locals.user.id,context)
-    res.reload()
+    res.redirect("/questions")
 
 }
