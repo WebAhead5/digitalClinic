@@ -27,10 +27,6 @@ body {
 }
 
 
-
-
-
-
 .selected {
 
     color: red;
@@ -38,32 +34,10 @@ body {
 
 }
 
-.headerbar {
-    
-    list-style-type: none;
-    display: flex;
-    justify-content: space-evenly;
-  z-index:5;
-
-
-}
-
-.headerbar a , .headerbar a:visited , .headerbar a:active , .headerbar a:hover , .headerbar a:focus {
-
-    text-decoration: none;
-    color:inherit;
-    outline: 0;
-  width: 100px;
-  text-align: center;
-
-}
-
-
 .smallicon {
     height: 40px;
     width: 40px;
 }
-
 
 .btn {
   width: 100%;
@@ -80,11 +54,14 @@ body {
 
 
  }
-
 .btn:hover {
   background-color: #3b5998;
 }
-
+.logout_btn{
+    background-color: darkred ;
+    color: white !important;
+    border-radius: 30px;
+}
 
 .subTitle {
   color: tomato;
@@ -105,3 +82,29 @@ body {
   display: none !important;
 
 }
+
+
+
+
+
+
+.headerbar {
+
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+    z-index:5;
+
+
+}
+
+.headerbar a , .headerbar a:visited , .headerbar a:active , .headerbar a:hover , .headerbar a:focus {
+
+    text-decoration: none;
+    color:inherit;
+    outline: 0;
+    width: 100px;
+    text-align: center;
+
+}
+
