@@ -1,93 +1,72 @@
-https://hackmd.io/ZZmeojs0RDmmsUkohJ8TAA?edit
-
-# Template For New Projects
-
-## Initializing the project
-<details>
-<summary>initialize project</summary>
-
-### must
-- [ ] setup .env file with DB_URL and "DB_TEST_URL"
-- [ ] initialize database in "db_build.sql"
-- [ ] setup router handlers (in the ./server/routes folder)
-- [ ] link the routes to the "router.js" file
-- [ ] setup the "./server/routes/error.js" 
-
-------------
-- [ ] check [tape-promise](https://www.npmjs.com/package/tape-promise).
------------
-### templating 
-- [ ] setup main layout (main.hbs) 
-- [ ] add views 
-- [ ] add helpers
------------
-### optional
-- [ ]  show and implement 404.html - page not found
-- [ ]  show and implement 500.html - page not found
-
-</details>
 
 
-----------
+# Digital Clinic
+
+
+
+## intreduction
+
+our task this week was to implement the the following bullets in our project:
+- server side rending using handlebars
+- authentication + authorization (log-in/register/logout/etc...)
+- databases using postgres
+- testing  
+
 
 ## Website Concept
-
-## Initial Website Design (using Figma)
-
-## Database Tables
-
-## Code Structure diagram
-![](https://i.imgur.com/Iiceqzi.png)
-
-## the site's routes + params
-
-## Database SQL CRUD Guidelines
-
-- <u>readAll</u>(cb)
-    - returns the entire table
-    -  cb = (err,rows)=>{}
-- <u>read</u>(count, offset, cb)
-    -  returns the number of elements starting from the offset index
-    -  cb = (err,rows)=>{} 
-- <u>count</u>(cb)
-    - returns the number of rows
-    - cb = (error,count) => {}
-- <u>create</u>(obj,cb)
-    - obj - key value pairs matching the column name and their values
-    - cb => (err)=>{}
-- <u>delete</u>(id, cb)
-    - cb = (err)=>{}
+we've decided to go with an "app" that helps calm some of your undesired doubts and fears by hosting a platform where you can ask doctors all over the world about helth issues you have or might have,
+get their professional opinion by a click of a button. 
 
 
-## Database Input validators
-create a seprate file for input validation
-
-## front-end logic Stricture
-logic comunicate with the backend using the provided routes
-
-## Work Splitting
+### features
+* log in as a doctor or patient
+* ask questions and have them asnwered by pZrofessionals
+* gorgor you password? you can reset it!
 
 
-- **<u>pair 1</u>**
-    - server
-        - [ ]
-    - SQL
-        - [ ]
-    - logic
-        - [ ]
-    - dom
-        - [ ]
+### initial concept art
 
-        
+![](https://i.imgur.com/RayDIJQ.png)
 
-        
-- **<u>pair 2</u>**
-    - server
-        - [ ]
-    - SQL
-        - [ ]
-    - logic
-        - [ ]
-    - dom
-        - [ ]
 
+
+## Code Documentation 
+- [database tables structure](https://github.com/WebAhead5/digitalClinic/issues/52)
+- [database models structure](https://github.com/WebAhead5/digitalClinic/issues/65)
+- [server routes](https://github.com/WebAhead5/digitalClinic/issues/67)
+- [cookie keys](https://github.com/WebAhead5/digitalClinic/issues/68)
+- [res.locals](https://github.com/WebAhead5/digitalClinic/issues/69)
+- [environment variables](https://github.com/WebAhead5/digitalClinic/issues/70)
+
+
+
+## work split
+we used this ["Project Manager"](https://github.com/WebAhead5/digitalClinic/projects/2)  to split the work between the party members and to keep track of the works that needs to be done.
+
+basically an issue was created for each task, and it was assigned a label and a party member/ pair.
+
+
+## streach goals
+all the streach goals can be found [here](https://github.com/WebAhead5/digitalClinic/labels/stretch%20goals).
+
+
+## difficulties
+
+#### <u>working on the front end and splitting the work between party members</u>
+    
+- each member worked on a diffrant section which created lots and lots and conflicts
+- the front end was the most neglected part of the project
+
+
+#### <u>sending an email to the user if he hits the "reset password" in the "login" page</u>
+- we didn't have time to send an actual email to the user, but we did send s dommy email
+- instructions on how to access that dommy email are logged on the website
+
+
+## credits to
+- [bcrypt](https://www.npmjs.com/package/bcrypt)
+- [express](https://www.npmjs.com/package/express)
+- [csurf](https://www.npmjs.com/package/csurf)
+- [helmet](https://www.npmjs.com/package/helmet)
+- [pg](https://www.npmjs.com/package/pg)
+- [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
