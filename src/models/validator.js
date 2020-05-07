@@ -1,6 +1,6 @@
 function isLettersAndSpaces(str) {
-  const regex = /[a-z ]/gi;
-  return str && str.trim() && regex.test(str);
+  const regex = /^[a-z ]+$/gi;
+  return str && str.trim() === str && regex.test(str);
 }
 
 
