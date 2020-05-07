@@ -9,6 +9,7 @@ const logout = require('./controllers/logout');
 const questions = require("./controllers/questions")
 const questionForum = require("./controllers/questionForum")
 const dashBoard = require("./controllers/dashboard")
+
 const forgotPassword = require("./controllers/forgotPassword")
 const resetPassword = require("./controllers/resetPassword")
 

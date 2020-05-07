@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="/styles/entry.css">
+
+<main class  ="entryContainer"{{#if (isNumber answersCount)}} onclick="location.href = '/question/{{data.id}}'" {{/if}}>
+
+    <div class="entry_header_and_footer">
+
+        <div class="entryHeader">
+            <div class="entryHeader__icon">
+                {{#if data.doctor_certificate}}
+                <img class="smallicon" src="/res/icon-doctor.png">
+                {{else}}
+                <img class="smallicon" src="/res/icon-patient.png">
+                {{/if}}
+
+            </div>
+
+            <div class="entryHeader__text">
+                <span id="askerName">{{#if data.doctor_certificate}}Dr.{{/if}} {{data.first_name}} {{data.last_name}}</span>
+                <span id="askedQuestion">{{data.context}}</span>
+            </div>
+        </div>
+
+
+        <div class="entryFooter">
+            {{#if (isNumber answersCount) }}
+                <span id="">{{answersCount}} answers... </span>
+            {{else}}
+                <span></span>
+            {{/if}}
+            <span id="">{{getPostTime data.post_time_milliseconds }} </span>
+
+        </div>
+
+
+    </div>
+</main>

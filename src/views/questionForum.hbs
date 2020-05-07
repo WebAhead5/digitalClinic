@@ -1,13 +1,15 @@
+<link href="/styles/questionForum.css" rel="stylesheet">
 
-
+<section >
 
 <!--    show question-->
-    {{> questionEntry data=questionData}}
+
+    {{> entry data=questionData}}
 
 <!--    show answers-->
 
     {{#each answers}}
-        {{> answerEntry data=this}}
+        {{> entry data=this}}
     {{/each}}
 
 
@@ -18,3 +20,7 @@
     <input type="hidden" name="_csrf" value="{{csrfToken}}">
 </form>
 
+
+
+
+</section>

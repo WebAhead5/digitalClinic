@@ -32,6 +32,8 @@ firstNameElement.addEventListener('input', (event) => {
         errText.textContent = "First Name must be a string";
         errContainer.appendChild(errText)
         firstNameElement.style.border = '1.5px solid red';
+        errText.style.fontSize = 'small'
+        errText.style.color = 'red';
     }
     event.preventDefault();
 })
@@ -50,6 +52,8 @@ lastNameElement.addEventListener('input', (event) => {
         errText.textContent = "Last Name must be a string";
         errContainer.appendChild(errText)
         lastNameElement.style.border = '1.5px solid red';
+        errText.style.fontSize = 'small'
+        errText.style.color = 'red'
     }
     event.preventDefault();
 })
@@ -58,7 +62,7 @@ lastNameElement.addEventListener('input', (event) => {
 
 confirmPassword.addEventListener('input', () => {
  
-console.log(newPassword.value, confirmPassword.value);
+
     if (newPassword.value !== confirmPassword.value) {
         errText.textContent = 'Passwords do not match';
         newPassword.style.border = '1.5px solid red';
@@ -66,6 +70,9 @@ console.log(newPassword.value, confirmPassword.value);
     } else {
         newPassword.style.border = '2.5px solid green';
         confirmPassword.style.border = '2.5px solid green';
+        errText.style.fontSize = 'small'
+        errText.style.color = 'red'
+
     }
 
 
@@ -75,3 +82,29 @@ event.preventDefault();
     
     
 
+
+const doctorImg = document.getElementById('doctorimg');
+const patientImg = document.getElementById('paitentimg');
+const DrCertificate = document.getElementById('doctorCertificate')
+const DrCertificateContainer = document.getElementById('doctorCerContainer')
+
+
+
+doctorImg.addEventListener('click', () => {
+
+    DrCertificateContainer.classList.toggle('hidden', false);
+    doctorImg.classList.toggle('selectedImg', true);
+    patientImg.classList.toggle('selectedImg', false);
+
+})
+
+
+patientImg.addEventListener('click', () => {
+
+    DrCertificateContainer.classList.toggle('hidden', true);
+    DrCertificate.value = '';
+
+    doctorImg.classList.toggle('selectedImg', false);
+    patientImg.classList.toggle('selectedImg', true);
+
+})

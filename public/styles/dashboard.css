@@ -1,0 +1,112 @@
+
+
+.dashboardContainer__title {
+    color: tomato;
+}
+
+
+.form-popup {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 5px;
+    left: 5px;
+    border-radius: 20px 20px 0 0  ;
+    z-index: 9;
+    background-color: rgba(0,0,0,.5);
+    padding: 20px;
+}
+
+.addQuestionForm {
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    width: 100%;
+}
+
+.textField {
+    display: flex;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+
+}
+
+
+
+
+.submitButton {
+
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #3498DB;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    width: 100%;
+}
+.submitButton:hover {
+    background-color: #3498DB
+}
+.submitButton:active {
+    background-color: #3498DB;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.buttonContainer {
+
+    display: flex;
+    flex-direction: column;
+}
+.close-button {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: tomato;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+.close-button:hover {
+    background-color: tomato
+}
+.close-button:active {
+    background-color: tomato;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.open-button {
+    display: inline-block;
+    padding: 10px 15px;
+    margin-bottom: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #7ace06;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+.open-button:hover, .open-button:active {
+}
+.open-button:active {
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
