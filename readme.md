@@ -2,9 +2,7 @@
 
 # Digital Clinic
 
-
-
-## intreduction
+## Intreduction
 
 our task this week was to implement the the following bullets in our project:
 - server side rending using handlebars
@@ -18,13 +16,13 @@ we've decided to go with an "app" that helps calm some of your undesired doubts 
 get their professional opinion by a click of a button. 
 
 
-### features
+### Features
 * log in as a doctor or patient
 * ask questions and have them asnwered by pZrofessionals
 * gorgor you password? you can reset it!
 
 
-### initial concept art
+### Initial Concept Art
 
 ![](https://i.imgur.com/RayDIJQ.png)
 
@@ -46,11 +44,11 @@ we used this ["Project Manager"](https://github.com/WebAhead5/digitalClinic/proj
 basically an issue was created for each task, and it was assigned a label and a party member/ pair.
 
 
-## streach goals
+## Streach Goals
 all the streach goals can be found [here](https://github.com/WebAhead5/digitalClinic/labels/stretch%20goals).
 
 
-## difficulties
+## Difficulties
 
 #### <u>working on the front end and splitting the work between party members</u>
     
@@ -62,14 +60,14 @@ all the streach goals can be found [here](https://github.com/WebAhead5/digitalCl
 - we didn't have time to send an actual email to the user, but we did send s dommy email
 - instructions on how to access that dommy email are logged on the website
 
-## source
+## Source
 to run the website locally
 1) clone the repo
 2) add a .env file in the root directory of the project and store in it the following variables ["environment variables"](https://github.com/WebAhead5/digitalClinic/issues/70).
 3) run npm install 
 4) run the server using npm dev
 
-## credits to
+## Credits
 - [bcrypt](https://www.npmjs.com/package/bcrypt)
 - [express](https://www.npmjs.com/package/express)
 - [csurf](https://www.npmjs.com/package/csurf)
