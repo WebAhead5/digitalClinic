@@ -1,18 +1,22 @@
 <link href="/styles/dashboard.css" rel="stylesheet">
-<section class="dashboardContainer">
+
+
+
+<section >
     <h1 class="dashboardContainer__title"> Welcome back,{{#if user.doctorCer}} Dr.{{/if}} {{user.firstName}}
         {{user.lastName}}</h1>
 
+
     <div class="buttonContainer">
-
         <button type="button" class="open-button" onclick="openForm()">Ask a Question</button>
-
     </div>
+
+
 
     <div class="form-popup" id="myForm">
 
         <form class="addQuestionForm" method="post" action="/dashboard">
-            <input style=type="text" class="textField" name='context' placeholder="Type your question" required>
+            <input type="text" class="textField" name='context' placeholder="Type your question" required>
             <input type="submit" class="submitButton" value="Send question">
             <input type="hidden" name="_csrf" value="{{csrfToken}}">
         </form>
@@ -22,11 +26,11 @@
 
     </div>
 
-
     {{#each dataArray}}
-    {{> questionEntry data=this.questionData answersCount=this.answersCount}}
+    {{> entry data=this.questionData answersCount=this.answersCount}}
     {{/each}}
 
-
     <script src="/scripts/dashboard.js" defer></script>
+
+
 </section>
