@@ -1,32 +1,26 @@
-.questionForumContainer {
-background-color: silver;
-width: 50%;
-position: relative;
-margin: auto;
-border-radius: 10px;
-transition: cubic-bezier(0.68, -0.55, 0.265, 1.55) all 1s;
+
+
+.addAnswerForm{
+ position: fixed;
+    left: 5px;
+    right: 5px;
+    bottom: 0;
+    height: 50px;
+    border-radius: 20px 20px 0 0;
+    background-color: rgba(0,0,0,.5);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-
-.questionField{
-
-    
-
+.submitButton{
+ height: 30px;
+    width: 50px;
+    border-radius: 30%;
+}
+.textField {
+    width: 80%;
+    height: 30px;
 }
 
-
-
-.textField .submitButton{
-    position: relative;
-    align-items: baseline;
-    max-width: 80%;
-    
-}
-
-
-
-@media screen and (max-width: 600px){
-    .questionForumContainer{
-        width: 70%;
-    }
-}

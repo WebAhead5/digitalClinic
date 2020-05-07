@@ -1,9 +1,16 @@
-    <ul class="headerbar">
-        {{#if user}}
-            <li><a class ="" href="/logout">logout</a></li>
-        {{else}}
-            <li><a class = "{{#if (equals "login" selectedItem)}}selected {{/if}}" href="/login">login</a></li>
-            <li><a class = "{{#if (equals "register" selectedItem)}} selected {{/if}}" href="/register">sign up</a></li>
-        {{/if}}
-    </ul>
 
+<div class="headerbar ">
+
+    <img src="/res/Dr_Mario_logo.png" alt="mario" class="logo">
+
+    {{#unless user}}
+    <a class = "btn {{#if (equals "login" selectedItem)}}selected {{/if}}" href="/login" >login</a>
+    <a class = "btn {{#if (equals "register" selectedItem)}} selected {{/if}}" href="/register" >sign up</a>
+    {{/unless}}
+
+    {{#if user}}
+        <a class ="btn logout_btn" href="/logout">logout</a>
+
+    {{/if}}
+
+</div>

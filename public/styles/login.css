@@ -1,4 +1,4 @@
-.loginContainer {
+.loginContainer > section {
     border: 2px black;
     border-radius: 10px;
     background-color: #f2f2f2;
@@ -6,15 +6,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 500px
+    height: 250px;
+    width: 300px;
 
 }
-
-
-.formContainer__title {
-
-    color: tomato;
+.loginContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 150px;
 }
+
 
 
 .textField {

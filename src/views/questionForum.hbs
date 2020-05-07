@@ -1,15 +1,15 @@
 <link href="/styles/questionForum.css" rel="stylesheet">
 
-<section class="questionForumContainer">
+<section >
 
 <!--    show question-->
 
-    {{> questionEntry data=questionData}}
+    {{> entry data=questionData}}
 
 <!--    show answers-->
 
     {{#each answers}}
-        {{> answerEntry data=this}}
+        {{> entry data=this}}
     {{/each}}
 
 
