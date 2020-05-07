@@ -57,7 +57,7 @@ all the streach goals can be found [here](https://github.com/WebAhead5/digitalCl
 
 
 #### <u>sending an email to the user if he hits the "reset password" in the "login" page</u>
-- we didn't have time to send an actual email to the user, but we did send s dommy email
+- we didn't have time to send an actual email to the user, but we did send a dommy email
 - instructions on how to access that dommy email are logged on the website
 
 ## Source
