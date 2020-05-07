@@ -62,6 +62,12 @@ all the streach goals can be found [here](https://github.com/WebAhead5/digitalCl
 - we didn't have time to send an actual email to the user, but we did send s dommy email
 - instructions on how to access that dommy email are logged on the website
 
+## source
+to run the website locally
+1) clone the repo
+2) add a .env file in the root directory of the project and store in it the following variables ["environment variables"](https://github.com/WebAhead5/digitalClinic/issues/70).
+3) run npm install 
+4) run the server using npm dev
 
 ## credits to
 - [bcrypt](https://www.npmjs.com/package/bcrypt)
