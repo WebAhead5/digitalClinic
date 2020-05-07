@@ -52,10 +52,7 @@ async function add(user_id, question_id, context) {
   if (!Number.isInteger(question_id))
     throw new Error("question id must be a number");
 
-  if (!context)
-    throw new Error("context can't be null");
-
-  if (validator.isEmptyString(context))
+  if (!context || validator.isEmptyString(context))
     throw new Error('message context cannot be empty');
 
   await dbConnection.query(

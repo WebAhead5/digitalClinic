@@ -104,7 +104,7 @@ exports.add = async (firstName, lastName, email, doctorCertificate, password) =>
         throw new Error("First name and last name must be letters");
 
 
-    if (!validator.validateEmail(email))
+    if (!validator.validateEmail(email).isValid)
         throw new Error("please insert a valid email");
 
 
