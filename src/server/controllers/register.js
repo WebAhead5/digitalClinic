@@ -22,7 +22,7 @@ exports.post = async (req, res, next) => {
 
     //check password straight
     let validation = validatePassword(password)
-    if (!validation.isValid || validation.strength <= Math.min(3,validation.total)) {
+    if (!validation.isValid || validation.strength < Math.min(3,validation.total)) {
         return res.render('register', {
             title: "register",
             error: validation.errorMessage,
