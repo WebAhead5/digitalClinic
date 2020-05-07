@@ -1,7 +1,10 @@
 
 <div class="headerbar ">
 
-    <img src="/res/Dr_Mario_logo.png" alt="mario" class="logo">
+    <a href="/dashboard">
+
+        <img src="/res/Dr_Mario_logo.png" alt="mario" class="logo">
+    </a>
 
     {{#unless user}}
     <a class = "btn {{#if (equals "login" selectedItem)}}selected {{/if}}" href="/login" >login</a>
