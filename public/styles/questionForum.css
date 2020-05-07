@@ -1,5 +1,32 @@
 .questionForumContainer {
+background-color: silver;
+width: 50%;
+position: relative;
+margin: auto;
+border-radius: 10px;
+transition: cubic-bezier(0.68, -0.55, 0.265, 1.55) all 1s;
+}
 
+
+.questionField{
 
     
+
+}
+
+
+
+.textField .submitButton{
+    position: relative;
+    align-items: baseline;
+    max-width: 80%;
+    
+}
+
+
+
+@media screen and (max-width: 600px){
+    .questionForumContainer{
+        width: 70%;
+    }
 }
