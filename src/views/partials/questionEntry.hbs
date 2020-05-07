@@ -1,20 +1,29 @@
+<main {{#if (isNumber answersCount)}} onclick="location.href = '/question/{{data.id}}'" {{/if}}>
+
+    <div class="entryContainer">
+        <div class="questionField">
+            {{#if data.doctorCer}}
+            <img class="smallicon" src="/res/icon-doctor.png">
+            {{else}}
+            <img class="smallicon" src="/res/icon-patient.png">
+            {{/if}}
+            <div class="entryNameQuestion">
+                <span id="askerName">{{#if data.doctorCer}}Dr.{{/if}} {{data.first_name}} {{data.last_name}}</span>
+                <span id="askedQuestion">{{data.context}}</span>
+            </div>
+
+            <div class="answerField">
+                {{#if (isNumber answersCount) }}
+                <span id="">{{answersCount}} answers... </span>
+                <span id="">{{getPostTime data.post_time_milliseconds }} </span>
+                {{/if}}
+
+            </div>
 
 
-<main {{#if (isNumber answersCount)}}onclick="location.href = '/question/{{data.id}}'" {{/if}}>
 
-    <div >
-        <img src="">
-        <div>
-            <span id="askerName">{{data.first_name}} {{data.last_name}}</span>
-            <span id="askedQuestion">{{data.context}}</span>
         </div>
-    </div>
-    <div >
 
-        {{#if (isNumber answersCount) }}
-            <span id="">{{answersCount}} answers... </span>
-        {{/if}}
 
-        <span id="">{{getPostTime data.post_time_milliseconds }} </span>
     </div>
 </main>

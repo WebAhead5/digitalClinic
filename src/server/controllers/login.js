@@ -12,7 +12,8 @@ exports.post = async (req, res, next) => {
         if (!emaildb)
             return res.render("login", {
                 error: 'Email does not exist',
-                title: "login"
+                title: "login",
+                selectedItem:"login"
             })
 
         let result = await bcrypt.compare(password, emaildb.password);
@@ -21,7 +22,8 @@ exports.post = async (req, res, next) => {
         if (!result) {
             return res.render('login', {
                 error: 'Password is incorrect',
-                title:"login"
+                title:"login",
+                selectedItem:"login"
             });
         }
 
@@ -37,6 +39,6 @@ exports.post = async (req, res, next) => {
 
 
 exports.get = (req, res) => {
-    res.render("login", {title:"login"})
+    res.render("login", {title:"login",selectedItem:"login"})
 
 }

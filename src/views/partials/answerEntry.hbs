@@ -1,14 +1,16 @@
-
-<main >
-    <div >
-        <img src="">
-        <div>
-            <span id="askerName">{{data.first_name}} {{data.last_name}}</span>
+<main>
+    <div class="entryContainer">
+        {{#if data.doctorCer}}
+        <img class="smallicon" src="/res/icon-doctor.png">
+        {{else}}
+        <img class="smallicon" src="/res/icon-patient.png">
+        {{/if}}
+        <div class="entryNameQuestion">
+            <span id="askerName">{{#if data.doctorCer}}Dr.{{/if}} {{data.first_name}} {{data.last_name}}</span>
             <span id="askedQuestion">{{data.context}}</span>
         </div>
     </div>
-    <div >
 
-        <span id="">{{getPostTime data.post_time_milliseconds }} </span>
+    <span id="">{{getPostTime data.post_time_milliseconds }} </span>
     </div>
 </main>

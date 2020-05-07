@@ -45,6 +45,13 @@ function toggler() {
 }
 
 
+function equals (val1,val2) {
+    
+    return val1===val2;
 
-module.exports= {getPostTime, toggler, isNumber}
+} 
+
+
+
+module.exports= {getPostTime, toggler, isNumber,equals}
 
