@@ -1,0 +1,27 @@
+.header {
+     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+
+.header h1 {
+    color: #fff;
+    font-size: 46px;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+.header p {
+    color: #fff;
+    font-size: 24px;
+    font-weight: lighter;
+}
+
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}

@@ -86,12 +86,13 @@ event.preventDefault();
 const doctorImg = document.getElementById('doctorimg');
 const patientImg = document.getElementById('paitentimg');
 const DrCertificate = document.getElementById('doctorCertificate')
+const DrCertificateContainer = document.getElementById('doctorCerContainer')
 
 
 
 doctorImg.addEventListener('click', () => {
 
-    DrCertificate.classList.toggle('hidden', false);
+    DrCertificateContainer.classList.toggle('hidden', false);
     doctorImg.classList.toggle('selectedImg', true);
     patientImg.classList.toggle('selectedImg', false);
 
@@ -100,7 +101,7 @@ doctorImg.addEventListener('click', () => {
 
 patientImg.addEventListener('click', () => {
 
-    DrCertificate.classList.toggle('hidden', true);
+    DrCertificateContainer.classList.toggle('hidden', true);
     DrCertificate.value = '';
 
     doctorImg.classList.toggle('selectedImg', false);

@@ -1,18 +1,22 @@
 
 <link href="/styles/login.css" rel="stylesheet">
-<section class="loginContainer">
-  <h1 class="formContainer__title">LOGIN</h1>
+
+<div class="loginContainer">
+<section >
+
+  <h1 class="title">LOGIN</h1>
 
   <form class="loginForm" action="/login" method="POST">
     <input class="textField" type="email" name="email" placeholder="Email">
     <input class="textField" type="password" name="password" placeholder="Password">
-    <input class="submitButton" type="submit" value="Login">
+      <span class="errorMsg">{{error}}</span>
+
+      <input class="submitButton" type="submit" value="Login">
   </form>   
 
 {{#if error}}
 
 
-<h1 style="color: red;">{{error}}</h1>
 
 
 
@@ -21,3 +25,5 @@
 
 
 </section>
+
+</div>

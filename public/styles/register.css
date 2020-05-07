@@ -1,4 +1,4 @@
-.registerContainer {
+.registerContainer > section {
     border: 2px black;
     border-radius: 10px;
     background-color: #f2f2f2;
@@ -6,14 +6,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 500px;
+    min-width:  300px;
 
 }
-
-#chooseAccount {
-    color: tomato;
-    padding-left: 550px;
+.registerContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 150px;
 }
+
 
 #doctorimg {
     height: 100px;
@@ -26,18 +28,6 @@
 }
 
 
-.column {
-    float: left;
-    width: 33.33%;
-    display: flex;
-    flex-direction: column;
-}
-
-.caption {
-    display: block;
-    margin-left: 25px;
-    color: black;
-}
 
 .textField {
     padding-left: 10px;
@@ -96,3 +86,22 @@
   .selectedImg {
       border: 1px green solid;
   }
+
+
+  .userType{
+    position:relative;
+  }
+
+.userType span{
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    right:0;
+
+    height: 20px;
+    background-color: black;
+    opacity: .5;
+    color: white;
+    text-align: center;
+
+}
