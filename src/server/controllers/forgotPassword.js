@@ -53,7 +53,8 @@ exports.post = async (req,res)=>{
         return res.render("forgotPassword", {successful: true})
     }
     catch (e) {
-        return res.render("forgotPassword", {title:"forgot password",error: "an error has occurred on our end"})
+        // return res.render("forgotPassword", {title:"forgot password",error: "an error has occurred on our end"})
+        return res.render("forgotPassword", {title:"forgot password",error: e.message})
     }
 
 }
@@ -62,17 +63,26 @@ exports.post = async (req,res)=>{
 
 async function sendEmail(hostName, toEmail, message) {
     //create the means to send an email
+    let transporter;
 
-    // let testAccount = await nodemailer.createTestAccount();
 
-    let transporter = nodemailer.createTransport({
-        host: 'smtp.ethereal.email',
-        port: 587,
-        auth: {
-            user: "damaris.rosenbaum1@ethereal.email", // generated ethereal user
-            pass: "PfdfDRdaXbxWUsbzWz" // generated ethereal password
-        }
-    });
+
+
+        //running in development
+        let testAccount = await nodemailer.createTestAccount();
+        console.log("go to https://ethereal.email/login to view the email that was sent ot the user");
+        console.log(`email: ${testAccount.user}  password: ${testAccount.pass}`);
+
+        transporter = nodemailer.createTransport({
+            host: 'smtp.ethereal.email',
+            port: 587,
+            auth: {
+                user: testAccount.user, // generated ethereal user
+                pass: testAccount.pass // generated ethereal password
+            }
+        });
+
+
 
 
     //send email
@@ -83,4 +93,8 @@ async function sendEmail(hostName, toEmail, message) {
         text: message, // plain text body
         html: `<h3><b>${message}</b></h3>` // html body
     });
+
+    //todo send a real email
+    throw new Error(`for how this feature is only available in development and not in production go to https://ethereal.email/messages to check the sent email.  your credentials are email: ${testAccount.user}  password: ${testAccount.pass}`)
+
 }

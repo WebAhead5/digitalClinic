@@ -48,7 +48,8 @@ exports.post = async (req,res,next)=>{
     let {password,confirmPassword, sessionID} = req.body;
     const saltRounds = parseInt(process.env.HASH_ITERATIONS);
 
-
+    if(!sessionID)
+        return   res.render("resetPassword", {error: "bad url", sessionID})
     //compare and passwords
     if(password !== confirmPassword)
       return   res.render("resetPassword", {error: "passwords do not match", sessionID})
